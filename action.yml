@@ -1,0 +1,30 @@
+name: 'Run eslint with reviewdog'
+description: '🐶 Run eslint with reviewdog on pull requests to improve code review experience.'
+author: 'haya14busa (reviewdog)'
+inputs:
+  github_token:
+    description: 'GITHUB_TOKEN.'
+    required: true
+  level:
+    description: 'Report level for reviewdog [info,warning,error]'
+    default: 'error'
+  reporter:
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Default is github-pr-check.
+      github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    default: 'github-pr-check'
+  eslint_flags:
+    description: "flags and args of eslint command. Default: '.'"
+    default: '.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github_token }}
+    - ${{ inputs.level }}
+    - ${{ inputs.reporter }}
+    - ${{ inputs.eslint_flags }}
+branding:
+  icon: 'hexagon'
+  color: 'blue'
