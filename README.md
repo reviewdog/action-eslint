@@ -7,8 +7,8 @@ This action runs [eslint](https://github.com/eslint/eslint) with
 [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve
 code review experience.
 
-[![github-pr-check sample](https://user-images.githubusercontent.com/3797062/65406379-54848e00-de1a-11e9-8464-1037e1cacf80.png)](https://github.com/reviewdog/action-eslint/pull/1)
-[![github-pr-review sample](https://user-images.githubusercontent.com/3797062/65406408-6d8d3f00-de1a-11e9-90dd-d39aa3e19e7f.png)](https://github.com/reviewdog/action-eslint/pull/1)
+[![github-pr-check sample](https://user-images.githubusercontent.com/3797062/65439130-a6043b80-de61-11e9-98b5-bd9567e184b0.png)](https://github.com/reviewdog/action-eslint/pull/1)
+[![github-pr-review sample](https://user-images.githubusercontent.com/3797062/65439073-91c03e80-de61-11e9-9077-39d480fbad0d.png)](https://github.com/reviewdog/action-eslint/pull/1)
 
 ## Inputs
 
