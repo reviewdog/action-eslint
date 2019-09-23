@@ -26,5 +26,5 @@ runs:
     - ${{ inputs.reporter }}
     - ${{ inputs.eslint_flags }}
 branding:
-  icon: 'hexagon'
+  icon: 'alert-octagon'
   color: 'blue'
