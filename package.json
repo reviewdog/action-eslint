@@ -1,0 +1,32 @@
+{
+  "name": "action-eslint",
+  "version": "1.0.0",
+  "description": "[![Docker Image CI](https://github.com/reviewdog/action-eslint/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/reviewdog/action-eslint/actions) [![Release](https://img.shields.io/github/release/reviewdog/action-eslint.svg?maxAge=43200)](https://github.com/reviewdog/action-eslint/releases)",
+  "main": "index.js",
+  "dependencies": {
+    "stylelint": "^11.0.0",
+    "stylelint-config-recommended": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reviewdog/action-eslint.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reviewdog/action-eslint/issues"
+  },
+  "homepage": "https://github.com/reviewdog/action-eslint#readme"
+}
