@@ -23,9 +23,7 @@ It's same as `-level` flag of reviewdog.
 
 ### `reporter`
 
-Reporter of reviewdog command [github-pr-check,github-pr-review].
-Default is github-pr-check.
-github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+Reporter of reviewdog command: github-pr-check only for now (also the default).
 
 ### `eslint_flags`
 
@@ -59,6 +57,6 @@ jobs:
         uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review # Change reporter.
+          reporter: github-pr-check # Change reporter.
           eslint_flags: 'src/'
 ```

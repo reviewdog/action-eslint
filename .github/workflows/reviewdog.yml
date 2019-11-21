@@ -11,9 +11,3 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           eslint_flags: 'testdata/'
-      - name: eslint-github-pr-review
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          eslint_flags: 'testdata/'
