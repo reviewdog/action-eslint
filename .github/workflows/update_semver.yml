@@ -1,4 +1,4 @@
-me: Update Semver
+name: Update Semver
 on:
   push:
     branches-ignore:
