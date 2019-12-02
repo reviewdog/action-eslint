@@ -20,11 +20,6 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.github_token }}
-    - ${{ inputs.level }}
-    - ${{ inputs.reporter }}
-    - ${{ inputs.eslint_flags }}
 branding:
   icon: 'alert-octagon'
   color: 'blue'
