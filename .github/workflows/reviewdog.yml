@@ -10,6 +10,13 @@ jobs:
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          eslint_flags: 'testdata/'
+      - name: eslint-github-check
+        uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
           eslint_flags: 'testdata/'
       - name: eslint-github-pr-review
         uses: ./
