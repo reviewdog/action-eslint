@@ -1,17 +1,10 @@
-name: reviewdog
+name: linting
 on: [pull_request]
 jobs:
-  eslint:
-    name: runner / eslint
-    runs-on: ubuntu-latest
+  test:
     steps:
       - uses: actions/checkout@v1
-
       - name: warn
         run: echo "::warning file=review.sh,line=2,col=5::TestTest"
 
-      - name: eslint-github-pr-check
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          eslint_flags: 'testdata/'
+
