@@ -25,11 +25,13 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
-      - name: eslint-subproject
+      - name: eslint-github-pr-review
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
           workdir: ./test-subproject
+          eslint_flags: 'test-subproject/sub-testdata/'
       - name: eslint-subproject
         uses: ./
         with:
