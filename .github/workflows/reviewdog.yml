@@ -30,11 +30,11 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          workdir: ./test-subproject
+          directory: ./test-subproject
           eslint_flags: 'test-subproject/sub-testdata/'
       - name: eslint-subproject
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
-          workdir: ./test-subproject
+          directory: ./test-subproject
           eslint_flags: 'test-subproject/sub-testdata/'

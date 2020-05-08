@@ -17,7 +17,7 @@ inputs:
   eslint_flags:
     description: "flags and args of eslint command. Default: '.'"
     default: '.'
-  workdir:
+  directory:
     description: "The directory from which look for and run eslint. Default '.'"
     default: '.'
 runs:
