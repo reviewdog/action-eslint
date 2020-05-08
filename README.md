@@ -36,6 +36,10 @@ github-pr-review can use Markdown and add a link to rule page in reviewdog repor
 
 Optional. Flags and args of eslint command. Default: '.'
 
+### `workdir`
+
+Optional. The directory from which look for and run eslint. Default '.'
+
 ## Example usage
 
 You also need to install [eslint](https://github.com/eslint/eslint).
