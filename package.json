@@ -8,7 +8,7 @@
     "stylelint-config-recommended": "^3.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.4.0",
+    "eslint": "^7.0.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^11.0.0",
