@@ -52,7 +52,7 @@ Optional. Flags and args of eslint command. Default: '.'
 
 ### `workdir`
 
-Optional. The directory from which look for and run eslint. Default '.'
+Optional. The directory from which to look for and run eslint. Default '.'
 
 ## Example usage
 
