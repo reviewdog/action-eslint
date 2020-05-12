@@ -9,32 +9,27 @@ jobs:
       - name: eslint-github-pr-check
         uses: ./
         with:
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
       - name: eslint-github-check
         uses: ./
         with:
-          github_token: ${{ secrets.github_token }}
           reporter: github-check
           level: warning
           eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
       - name: eslint-github-pr-review
         uses: ./
         with:
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
       - name: eslint-subproject-github-pr-review
         uses: ./
         with:
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           workdir: ./test-subproject
           eslint_flags: 'sub-testdata/'
       - name: eslint-subproject
         uses: ./
         with:
-          github_token: ${{ secrets.github_token }}
           workdir: ./test-subproject
           eslint_flags: 'sub-testdata/'

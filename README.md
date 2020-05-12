@@ -17,7 +17,7 @@ code review experience.
 
 ### `github_token`
 
-**Required**. Must be in form of `github_token: ${{ secrets.github_token }}`'.
+**Required**. Default is `${{ github.token }}`.
 
 ### `level`
 
@@ -81,7 +81,6 @@ jobs:
       - name: eslint
         uses: reviewdog/action-eslint@v1
         with:
-          github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Change reporter.
           eslint_flags: 'src/'
 ```
