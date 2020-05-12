@@ -17,7 +17,7 @@ if [ "${INPUT_REPORTER}" == 'github-pr-review' ]; then
   $(npm bin)/eslint -f="json" ${INPUT_ESLINT_FLAGS:-'.'} \
     | jq -r '.[] | {filePath: .filePath, messages: .messages[]} | "\(.filePath):\(.messages.line):\(.messages.column):\(.messages.message) [\(.messages.ruleId)](https://eslint.org/docs/rules/\(.messages.ruleId))"' \
     | reviewdog -efm="%f:%l:%c:%m" \
-        -name="eslint" \
+        -name="${INPUT_TOOL_NAME}" \
         -reporter=github-pr-review \
         -filter-mode="${INPUT_FILTER_MODE}" \
         -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
@@ -27,6 +27,7 @@ else
   # github-pr-check,github-check (GitHub Check API) doesn't support markdown annotation.
   $(npm bin)/eslint -f="stylish" ${INPUT_ESLINT_FLAGS:-'.'} \
     | reviewdog -f="eslint" \
+        -name="${INPUT_TOOL_NAME}" \
         -reporter="${INPUT_REPORTER:-github-pr-check}" \
         -filter-mode="${INPUT_FILTER_MODE}" \
         -fail-on-error="${INPUT_FAIL_ON_ERROR}" \

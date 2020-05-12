@@ -34,6 +34,9 @@ inputs:
   workdir:
     description: "The directory from which to look for and run eslint. Default '.'"
     default: '.'
+  tool_name:
+    description: 'Tool name to use for reviewdog reporter'
+    default: 'eslint'
 runs:
   using: 'docker'
   image: 'Dockerfile'
