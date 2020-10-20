@@ -69,7 +69,8 @@ module.exports = function (results, data) {
         code: {
           value: msg.ruleId,
           url: (data.rulesMeta[msg.ruleId].docs.url || '')
-        }
+        },
+        original_output: JSON.stringify(msg)
       };
 
       if (msg.fix) {
