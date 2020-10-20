@@ -4,7 +4,8 @@ module.exports = {
         "es6": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "eslint:recommended"
     ],
     "globals": {
         "Atomics": "readonly",
