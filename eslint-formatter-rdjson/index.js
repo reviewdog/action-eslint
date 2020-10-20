@@ -20,7 +20,7 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
   let column = 0;
   let lengthSoFar = 0;
   for (const line of lines) {
-    if (offset < lengthSoFar + line.length) {
+    if (offset <= lengthSoFar + line.length) {
       const lineText = line.slice(0, offset-lengthSoFar);
       // +1 because eslint offset is a bit weird and will append text right
       // after the offset.
@@ -40,6 +40,27 @@ function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines)
     col = unescape(encodeURIComponent(lineText)).length;
   }
   return {line: line, column: col};
+}
+
+function sameSuffixLength(str1, str2) {
+  let i = 0;
+  for (i = 0; i < str1.length && i < str2.length; ++i) {
+    if (str1[str1.length-(i+1)] !== str2[str2.length-(i+1)]) {
+      break;
+    }
+  }
+  return i;
+}
+
+function buildMinimumSuggestion(fix, source) {
+  const l = sameSuffixLength(fix.text, source.slice(fix.range[0], fix.range[1]));
+  return {
+    range: {
+      start: positionFromUTF16CodeUnitOffset(fix.range[0], source),
+      end: positionFromUTF16CodeUnitOffset(fix.range[1] - l, source)
+    },
+    text: fix.text.slice(0, fix.text.length - l)
+  };
 }
 
 module.exports = function (results, data) {
@@ -74,13 +95,7 @@ module.exports = function (results, data) {
       };
 
       if (msg.fix) {
-        diagnostic.suggestions = [{
-          range: {
-            start: positionFromUTF16CodeUnitOffset(msg.fix.range[0], source),
-            end: positionFromUTF16CodeUnitOffset(msg.fix.range[1], source)
-          },
-          text: msg.fix.text
-        }];
+        diagnostic.suggestions = [buildMinimumSuggestion(msg.fix, source)];
       }
 
       rdjson.diagnostics.push(diagnostic);
