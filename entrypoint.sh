@@ -20,6 +20,7 @@ if [ "${INPUT_REPORTER}" == 'github-pr-review' ]; then
         -filter-mode="${INPUT_FILTER_MODE}" \
         -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
         -level="${INPUT_LEVEL}" \
+        -tee \
         ${INPUT_REVIEWDOG_FLAGS}
 else
   # github-pr-check,github-check (GitHub Check API) doesn't support markdown annotation.
