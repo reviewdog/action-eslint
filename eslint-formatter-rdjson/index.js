@@ -14,6 +14,10 @@ function convertSeverity(s) {
   return 'UNKNOWN_SEVERITY';
 }
 
+function utf8length(str) {
+  return unescape(encodeURIComponent(str)).length;
+}
+
 function positionFromUTF16CodeUnitOffset(offset, text) {
   const lines = text.split('\n');
   let lnum = 1;
@@ -24,7 +28,7 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
       const lineText = line.slice(0, offset-lengthSoFar);
       // +1 because eslint offset is a bit weird and will append text right
       // after the offset.
-      column = unescape(encodeURIComponent(lineText)).length + 1;
+      column = utf8length(lineText) + 1;
       break;
     }
     lengthSoFar += line.length + 1; // +1 for line-break.
@@ -37,12 +41,12 @@ function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines)
   let col = 0;
   if (sourceLines.length >= line) {
     const lineText = sourceLines[line-1].slice(0, column);
-    col = unescape(encodeURIComponent(lineText)).length;
+    col = utf8length(lineText);
   }
   return {line: line, column: col};
 }
 
-function sameSuffixLength(str1, str2) {
+function commonSuffixLength(str1, str2) {
   let i = 0;
   for (i = 0; i < str1.length && i < str2.length; ++i) {
     if (str1[str1.length-(i+1)] !== str2[str2.length-(i+1)]) {
@@ -53,7 +57,7 @@ function sameSuffixLength(str1, str2) {
 }
 
 function buildMinimumSuggestion(fix, source) {
-  const l = sameSuffixLength(fix.text, source.slice(fix.range[0], fix.range[1]));
+  const l = commonSuffixLength(fix.text, source.slice(fix.range[0], fix.range[1]));
   return {
     range: {
       start: positionFromUTF16CodeUnitOffset(fix.range[0], source),
