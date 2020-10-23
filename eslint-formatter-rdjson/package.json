@@ -1,0 +1,28 @@
+{
+  "name": "eslint-formatter-rdjson",
+  "version": "1.0.0",
+  "description": "ESLint Formatter for the Reviewdog Diagnostic Format (RDFormat)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reviewdog/action-eslint.git"
+  },
+  "keywords": [
+    "eslint",
+    "eslint",
+    "formatter",
+    "formatter",
+    "rdjson",
+    "reviewdog",
+    "rdformat"
+  ],
+  "author": "haya14busa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reviewdog/action-eslint/issues"
+  },
+  "homepage": "https://github.com/reviewdog/action-eslint#readme"
+}
