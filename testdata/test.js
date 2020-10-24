@@ -12,3 +12,8 @@ function /* 🐶 あいうえお */ test2() {
     }
   }
 };
+
+function f()
+{
+  console.log('🐶');
+}
