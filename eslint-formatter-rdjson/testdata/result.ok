@@ -7,7 +7,7 @@
     {
       "message": "'test' is defined but never used.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 2,
@@ -29,7 +29,7 @@
     {
       "message": "Missing space before function parentheses.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 2,
@@ -66,7 +66,7 @@
     {
       "message": "The update clause in this loop moves the variable in the wrong direction.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 3,
@@ -88,7 +88,7 @@
     {
       "message": "'a' is defined but never used.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 4,
@@ -110,7 +110,7 @@
     {
       "message": "Missing whitespace after semicolon.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 4,
@@ -146,7 +146,7 @@
     {
       "message": "'b' is defined but never used.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 4,
@@ -168,7 +168,7 @@
     {
       "message": "Extra semicolon.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 4,
@@ -205,7 +205,7 @@
     {
       "message": "Expected space or tab after '//' in comment.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 4,
@@ -242,7 +242,7 @@
     {
       "message": "Extra semicolon.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 5,
@@ -279,7 +279,7 @@
     {
       "message": "'test2' is defined but never used.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 9,
@@ -301,7 +301,7 @@
     {
       "message": "Missing space before function parentheses.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 9,
@@ -338,7 +338,7 @@
     {
       "message": "The update clause in this loop moves the variable in the wrong direction.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 10,
@@ -360,7 +360,7 @@
     {
       "message": "Redundant double negation.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 11,
@@ -397,7 +397,7 @@
     {
       "message": "Empty block statement.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 11,
@@ -419,7 +419,7 @@
     {
       "message": "Unnecessary semicolon.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 14,
@@ -456,7 +456,7 @@
     {
       "message": "'f' is defined but never used.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 16,
@@ -478,7 +478,7 @@
     {
       "message": "Missing space before function parentheses.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 16,
@@ -515,7 +515,7 @@
     {
       "message": "Opening curly brace does not appear on the same line as controlling statement.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 17,
@@ -552,7 +552,7 @@
     {
       "message": "Extra semicolon.",
       "location": {
-        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "path": "testdata/test.js",
         "range": {
           "start": {
             "line": 18,
