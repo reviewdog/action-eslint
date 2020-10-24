@@ -436,7 +436,7 @@
         "value": "no-extra-semi",
         "url": "https://eslint.org/docs/rules/no-extra-semi"
       },
-      "original_output": "{\"ruleId\":\"no-extra-semi\",\"severity\":2,\"message\":\"Unnecessary semicolon.\",\"line\":14,\"column\":2,\"nodeType\":\"EmptyStatement\",\"messageId\":\"unexpected\",\"endLine\":14,\"endColumn\":3,\"fix\":{\"range\":[205,207],\"text\":\"}\"}}",
+      "original_output": "{\"ruleId\":\"no-extra-semi\",\"severity\":2,\"message\":\"Unnecessary semicolon.\",\"line\":14,\"column\":2,\"nodeType\":\"EmptyStatement\",\"messageId\":\"unexpected\",\"endLine\":14,\"endColumn\":3,\"fix\":{\"range\":[205,217],\"text\":\"}\\n\\nfunction\"}}",
       "suggestions": [
         {
           "range": {
@@ -450,6 +450,139 @@
             }
           },
           "text": "}"
+        }
+      ]
+    },
+    {
+      "message": "'f' is defined but never used.",
+      "location": {
+        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "range": {
+          "start": {
+            "line": 16,
+            "column": 10
+          },
+          "end": {
+            "line": 16,
+            "column": 11
+          }
+        }
+      },
+      "severity": "ERROR",
+      "code": {
+        "value": "no-unused-vars",
+        "url": "https://eslint.org/docs/rules/no-unused-vars"
+      },
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'f' is defined but never used.\",\"line\":16,\"column\":10,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":16,\"endColumn\":11}"
+    },
+    {
+      "message": "Missing space before function parentheses.",
+      "location": {
+        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "range": {
+          "start": {
+            "line": 16,
+            "column": 11
+          },
+          "end": {
+            "line": 16,
+            "column": 12
+          }
+        }
+      },
+      "severity": "ERROR",
+      "code": {
+        "value": "space-before-function-paren",
+        "url": "https://eslint.org/docs/rules/space-before-function-paren"
+      },
+      "original_output": "{\"ruleId\":\"space-before-function-paren\",\"severity\":2,\"message\":\"Missing space before function parentheses.\",\"line\":16,\"column\":11,\"nodeType\":\"FunctionDeclaration\",\"messageId\":\"missingSpace\",\"endLine\":16,\"endColumn\":12,\"fix\":{\"range\":[219,219],\"text\":\" \"}}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 16,
+              "column": 11
+            },
+            "end": {
+              "line": 16,
+              "column": 11
+            }
+          },
+          "text": " "
+        }
+      ]
+    },
+    {
+      "message": "Opening curly brace does not appear on the same line as controlling statement.",
+      "location": {
+        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "range": {
+          "start": {
+            "line": 17,
+            "column": 1
+          },
+          "end": {
+            "line": 17,
+            "column": 1
+          }
+        }
+      },
+      "severity": "ERROR",
+      "code": {
+        "value": "brace-style",
+        "url": "https://eslint.org/docs/rules/brace-style"
+      },
+      "original_output": "{\"ruleId\":\"brace-style\",\"severity\":2,\"message\":\"Opening curly brace does not appear on the same line as controlling statement.\",\"line\":17,\"column\":1,\"nodeType\":\"Punctuator\",\"messageId\":\"nextLineOpen\",\"endLine\":17,\"endColumn\":2,\"fix\":{\"range\":[221,222],\"text\":\" \"}}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 16,
+              "column": 13
+            },
+            "end": {
+              "line": 17,
+              "column": 1
+            }
+          },
+          "text": " "
+        }
+      ]
+    },
+    {
+      "message": "Extra semicolon.",
+      "location": {
+        "path": "/home/haya14busa/src/github.com/reviewdog/action-eslint/testdata/test.js",
+        "range": {
+          "start": {
+            "line": 18,
+            "column": 22
+          },
+          "end": {
+            "line": 18,
+            "column": 22
+          }
+        }
+      },
+      "severity": "ERROR",
+      "code": {
+        "value": "semi",
+        "url": "https://eslint.org/docs/rules/semi"
+      },
+      "original_output": "{\"ruleId\":\"semi\",\"severity\":2,\"message\":\"Extra semicolon.\",\"line\":18,\"column\":20,\"nodeType\":\"ExpressionStatement\",\"messageId\":\"extraSemi\",\"endLine\":18,\"endColumn\":21,\"fix\":{\"range\":[242,246],\"text\":\")\\n}\"}}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 18,
+              "column": 21
+            },
+            "end": {
+              "line": 18,
+              "column": 23
+            }
+          },
+          "text": ")"
         }
       ]
     }
