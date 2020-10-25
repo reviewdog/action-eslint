@@ -1,0 +1,14 @@
+name: test
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - name: Test eslint-formatter-rdjson
+        run: ./eslint-formatter-rdjson/test.sh
