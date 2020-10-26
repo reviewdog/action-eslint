@@ -6,7 +6,7 @@ ESLINT_FORMATTER='/formatter.js'
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
 
 if [ ! -f "$(npm bin)/eslint" ]; then
-  npm install
+  npm install --legacy-peer-deps
 fi
 
 $(npm bin)/eslint --version
