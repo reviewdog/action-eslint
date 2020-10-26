@@ -33,3 +33,5 @@ jobs:
         with:
           workdir: ./test-subproject
           eslint_flags: 'sub-testdata/'
+          reporter: github-check
+          filter_mode: file
