@@ -14,7 +14,7 @@ $(npm bin)/eslint --version
 $(npm bin)/eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
-      -reporter=github-pr-review \
+      -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \

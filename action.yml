@@ -11,10 +11,10 @@ inputs:
     default: 'error'
   reporter:
     description: |
-      Reporter of reviewdog command [github-pr-check,github-pr-review].
-      Default is github-pr-check.
+      Reporter of reviewdog command [github-check,github-pr-review].
+      Default is github-pr-review.
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
-    default: 'github-pr-check'
+    default: 'github-pr-review'
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
