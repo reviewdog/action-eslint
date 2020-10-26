@@ -79,7 +79,7 @@ module.exports = function (results, data) {
   results.forEach(result => {
     const filePath = result.filePath;
     const source = result.source;
-    const sourceLines = result.source.split('\n');
+    const sourceLines = source ? source.split('\n') : [];
     result.messages.forEach(msg => {
       let diagnostic = {
         message: msg.message,
