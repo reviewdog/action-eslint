@@ -1,0 +1,20 @@
+name: NPM Publish
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - run: npm install
+      - name: Test eslint-formatter-rdjson
+        run: ./eslint-formatter-rdjson/test.sh
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          package: ./eslint-formatter-rdjson/package.json
+          token: ${{ secrets.NPM_TOKEN }}
