@@ -1,6 +1,6 @@
 {
   "name": "eslint-formatter-rdjson",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ESLint Formatter for the Reviewdog Diagnostic Format (RDFormat)",
   "main": "index.js",
   "scripts": {
