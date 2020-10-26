@@ -1,4 +1,4 @@
-function test() {
-  for (var i = 0; i < 10; i--) {
+function test(){
+  for (var i = 0; i < 11; i--) {
   }
 }
