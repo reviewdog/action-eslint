@@ -93,7 +93,7 @@ module.exports = function (results, data) {
         severity: convertSeverity(msg.severity),
         code: {
           value: msg.ruleId,
-          url: (data.rulesMeta[msg.ruleId] ? data.rulesMeta[msg.ruleId].docs.url || '' : '')
+          url: (data.rulesMeta[msg.ruleId] && data.rulesMeta[msg.ruleId].docs ? data.rulesMeta[msg.ruleId].docs.url : '')
         },
         original_output: JSON.stringify(msg)
       };
