@@ -86,6 +86,65 @@
       "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":3,\"column\":3,\"nodeType\":\"ForStatement\",\"messageId\":\"incorrectDirection\",\"endLine\":6,\"endColumn\":4}"
     },
     {
+      "message": "Unexpected var, use let or const instead.",
+      "location": {
+        "path": "testdata/test.js",
+        "range": {
+          "start": {
+            "line": 3,
+            "column": 8
+          },
+          "end": {
+            "line": 3,
+            "column": 17
+          }
+        }
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "no-var",
+        "url": "https://eslint.org/docs/rules/no-var"
+      },
+      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":3,\"column\":8,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":3,\"endColumn\":17,\"fix\":{\"range\":[34,37],\"text\":\"let\"}}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 3,
+              "column": 8
+            },
+            "end": {
+              "line": 3,
+              "column": 11
+            }
+          },
+          "text": "let"
+        }
+      ]
+    },
+    {
+      "message": "Unexpected var, use let or const instead.",
+      "location": {
+        "path": "testdata/test.js",
+        "range": {
+          "start": {
+            "line": 4,
+            "column": 5
+          },
+          "end": {
+            "line": 4,
+            "column": 11
+          }
+        }
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "no-var",
+        "url": "https://eslint.org/docs/rules/no-var"
+      },
+      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":4,\"column\":5,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":4,\"endColumn\":11}"
+    },
+    {
       "message": "'a' is defined but never used.",
       "location": {
         "path": "testdata/test.js",
@@ -117,7 +176,8 @@
             "column": 10
           },
           "end": {
-            "column": 0
+            "line": 4,
+            "column": 11
           }
         }
       },
@@ -126,7 +186,7 @@
         "value": "semi-spacing",
         "url": "https://eslint.org/docs/rules/semi-spacing"
       },
-      "original_output": "{\"ruleId\":\"semi-spacing\",\"severity\":2,\"message\":\"Missing whitespace after semicolon.\",\"line\":4,\"column\":10,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"missingWhitespaceAfter\",\"fix\":{\"range\":[70,70],\"text\":\" \"}}",
+      "original_output": "{\"ruleId\":\"semi-spacing\",\"severity\":2,\"message\":\"Missing whitespace after semicolon.\",\"line\":4,\"column\":10,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"missingWhitespaceAfter\",\"endLine\":4,\"endColumn\":11,\"fix\":{\"range\":[70,70],\"text\":\" \"}}",
       "suggestions": [
         {
           "range": {
@@ -142,6 +202,28 @@
           "text": " "
         }
       ]
+    },
+    {
+      "message": "Unexpected var, use let or const instead.",
+      "location": {
+        "path": "testdata/test.js",
+        "range": {
+          "start": {
+            "line": 4,
+            "column": 11
+          },
+          "end": {
+            "line": 4,
+            "column": 17
+          }
+        }
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "no-var",
+        "url": "https://eslint.org/docs/rules/no-var"
+      },
+      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":4,\"column\":11,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":4,\"endColumn\":17}"
     },
     {
       "message": "'b' is defined but never used.",
@@ -356,6 +438,43 @@
         "url": "https://eslint.org/docs/rules/for-direction"
       },
       "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":10,\"column\":3,\"nodeType\":\"ForStatement\",\"messageId\":\"incorrectDirection\",\"endLine\":13,\"endColumn\":4}"
+    },
+    {
+      "message": "Unexpected var, use let or const instead.",
+      "location": {
+        "path": "testdata/test.js",
+        "range": {
+          "start": {
+            "line": 10,
+            "column": 8
+          },
+          "end": {
+            "line": 10,
+            "column": 17
+          }
+        }
+      },
+      "severity": "WARNING",
+      "code": {
+        "value": "no-var",
+        "url": "https://eslint.org/docs/rules/no-var"
+      },
+      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":10,\"column\":8,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":10,\"endColumn\":17,\"fix\":{\"range\":[154,157],\"text\":\"let\"}}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 10,
+              "column": 8
+            },
+            "end": {
+              "line": 10,
+              "column": 11
+            }
+          },
+          "text": "let"
+        }
+      ]
     },
     {
       "message": "Redundant double negation.",
