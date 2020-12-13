@@ -6,7 +6,7 @@ ESLINT_FORMATTER='/formatter.js'
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
 
 if [ ! -f "$(npm bin)/eslint" ]; then
-  npm install --only=dev
+  npm install --only=dev --ignore-scripts
 fi
 
 $(npm bin)/eslint --version
