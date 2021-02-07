@@ -13,7 +13,7 @@ jobs:
       - uses: haya14busa/action-depup@v1
         id: depup
         with:
-          file: Dockerfile
+          file: action.yml
           version_name: REVIEWDOG_VERSION
           repo: reviewdog/reviewdog
 
