@@ -1,12 +1,12 @@
 #!/bin/sh
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
-ESLINT_FORMATTER='/formatter.js'
+ESLINT_FORMATTER="${GITHUB_ACTION_PATH}/eslint-formatter-rdjson/index.js"
 
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
 
 if [ ! -f "$(npm bin)/eslint" ]; then
-  npm install --legacy-peer-deps
+  npm install
 fi
 
 $(npm bin)/eslint --version
