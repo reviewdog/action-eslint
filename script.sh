@@ -11,9 +11,14 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
-if [ ! -f "$(npm bin)/eslint" ]; then
-  echo '::group:: Running `npm install` to install eslint ...'
-  npm install
+PACKAGE_MANAGER="${INPUT_PACKAGE_MANAGER}"
+if [ $PACKAGE_MANAGER != "npm" -a $PACKAGE_MANAGER != "yarn" ]; then
+  echo "Unsupported package manager. Specify npm or yarn"
+  exit 1
+fi
+if [ ! -f "$($PACKAGE_MANAGER bin)/eslint" ]; then
+  echo "::group:: Running `$PACKAGE_MANAGER install` to install eslint ..."
+  $PACKAGE_MANAGER install
   echo '::endgroup::'
 fi
 

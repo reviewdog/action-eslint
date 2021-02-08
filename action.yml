@@ -37,6 +37,9 @@ inputs:
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
     default: 'eslint'
+  package_manager:
+    description: "Package manager for installing node modules [npm,yarn]. Default: 'npm'"
+    default: 'npm'
 runs:
   using: 'composite'
   steps:
@@ -55,6 +58,7 @@ runs:
         INPUT_ESLINT_FLAGS: ${{ inputs.eslint_flags }}
         INPUT_WORKDIR: ${{ inputs.workdir }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
+        INPUT_PACKAGE_MANAGER: ${{ inputs.package_manager }}
 branding:
   icon: 'alert-octagon'
   color: 'blue'
