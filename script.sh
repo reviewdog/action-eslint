@@ -11,16 +11,24 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
-if [ ! -f "$(npm bin)/eslint" ]; then
+NPM_ESLINT="$(npm bin)/eslint"
+if [ ! -x "$NPM_ESLINT" ]; then
   echo '::group:: Running `npm install` to install eslint ...'
   npm install
+fi
+if [ ! -x "$NPM_ESLINT" ]; then
+( cd $GITHUB_ACTION_PATH;
+  echo '::group:: Installing eslint ...'
+  npm install eslint
   echo '::endgroup::'
+)
+  NPM_ESLINT="$(cd $GITHUB_ACTION_PATH; npm bin)/eslint"
 fi
 
-echo "eslint version:$($(npm bin)/eslint --version)"
+echo "eslint version: $($NPM_ESLINT --version)"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
-$(npm bin)/eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
+$NPM_ESLINT -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
