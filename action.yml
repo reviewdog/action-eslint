@@ -8,34 +8,42 @@ inputs:
     default: ${{ github.token }}
   level:
     description: 'Report level for reviewdog [info,warning,error]'
+    required: false
     default: 'error'
   reporter:
     description: |
       Reporter of reviewdog command [github-check,github-pr-review].
       Default is github-pr-review.
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+    required: false
     default: 'github-pr-review'
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
       Default is added.
+    required: false
     default: 'added'
   fail_on_error:
     description: |
       Exit code for reviewdog when errors are found [true,false]
       Default is `false`.
+    required: false
     default: 'false'
   reviewdog_flags:
     description: 'Additional reviewdog flags'
+    required: false
     default: ''
   eslint_flags:
     description: "flags and args of eslint command. Default: '.'"
+    required: false
     default: '.'
   workdir:
     description: "The directory from which to look for and run eslint. Default '.'"
+    required: false
     default: '.'
   tool_name:
     description: 'Tool name to use for reviewdog reporter'
+    required: false
     default: 'eslint'
 runs:
   using: 'composite'
