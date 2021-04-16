@@ -47,7 +47,12 @@ function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines)
   let col = 0;
   if (sourceLines.length >= line) {
     const lineText = sourceLines[line-1].slice(0, column);
-    col = utf8length(lineText);
+
+    try {
+      col = utf8length(lineText);
+    } catch (error) {
+      console.error('Failed to get UTF 8 length:', lineText);
+    }
   }
   return {line: line, column: col};
 }
