@@ -28,7 +28,13 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
       const lineText = line.slice(0, offset-lengthSoFar);
       // +1 because eslint offset is a bit weird and will append text right
       // after the offset.
-      column = utf8length(lineText) + 1;
+
+      try {
+        column = utf8length(lineText) + 1;
+      } catch (error) {
+        console.error('Failed to get UTF 8 length:', lineText);
+      }
+      
       break;
     }
     lengthSoFar += line.length + 1; // +1 for line-break.
