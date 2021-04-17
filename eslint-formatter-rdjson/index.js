@@ -58,8 +58,8 @@ function commonSuffixLength(str1, str2) {
   let i = 0;
   let seenSurrogate = false;
   for (i = 0; i < str1.length && i < str2.length; ++i) {
-    const ch1 = str1.getCharCodeAt(str1.length-(i+1));
-    const ch2 = str2.getCharCodeAt(str2.length-(i+1));
+    const ch1 = str1.charCodeAt(str1.length-(i+1));
+    const ch2 = str2.charCodeAt(str2.length-(i+1));
     if (ch1 !== ch2) {
       if (!isHighSurrogate(ch1) || !isHighSurrogate(ch2)) {
         throw new Error("invalid surrogate character");
