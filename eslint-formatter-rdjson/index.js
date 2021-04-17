@@ -61,10 +61,10 @@ function commonSuffixLength(str1, str2) {
     const ch1 = str1.charCodeAt(str1.length-(i+1));
     const ch2 = str2.charCodeAt(str2.length-(i+1));
     if (ch1 !== ch2) {
-      if (!isHighSurrogate(ch1) || !isHighSurrogate(ch2)) {
-        throw new Error("invalid surrogate character");
-      }
       if (seenSurrogate) {
+        if (!isHighSurrogate(ch1) || !isHighSurrogate(ch2)) {
+          throw new Error("invalid surrogate character");
+        }
         // i is now between a low surrogate and a high surrogate.
         // we need to remove the low surrogate from the common suffix
         // to avoid breaking surrogate pairs.
