@@ -14,8 +14,35 @@ function convertSeverity(s) {
   return 'UNKNOWN_SEVERITY';
 }
 
+function isHighSurrogate(ch) {
+  return 0xD800 <= ch && ch <= 0xDC00;
+}
+
+function isLowSurrogate(ch) {
+  return 0xDC00 <= ch && ch <= 0xE000;
+}
+
 function utf8length(str) {
-  return unescape(encodeURIComponent(str)).length;
+  let length = 0;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charCodeAt(i);
+    if (isHighSurrogate(ch)) {
+      i++;
+      length += 4;
+      if (i >= str.length || !isLowSurrogate(str.charCodeAt(i))) {
+        throw new Error("invalid surrogate character");
+      }
+    } else if (isLowSurrogate(ch)) {
+      throw new Error("invalid surrogate character");
+    } else if (ch < 0x80) {
+      length++;
+    } else if (ch < 0x0800) {
+      length += 2;
+    } else {
+      length += 3;
+    }
+  }
+  return length;
 }
 
 function positionFromUTF16CodeUnitOffset(offset, text) {
