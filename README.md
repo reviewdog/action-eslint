@@ -77,10 +77,30 @@ jobs:
     name: runner / eslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: eslint
-        uses: reviewdog/action-eslint@v1
+      - uses: actions/checkout@v2
+      - uses: reviewdog/action-eslint@v1
         with:
           reporter: github-pr-review # Change reporter.
+          eslint_flags: 'src/'
+```
+
+You can also set up node and eslint manually like below.
+
+```yml
+name: reviewdog
+on: [pull_request]
+jobs:
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: yarn install
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-check
           eslint_flags: 'src/'
 ```
