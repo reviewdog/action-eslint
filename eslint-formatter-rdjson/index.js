@@ -14,6 +14,14 @@ function convertSeverity(s) {
   return 'UNKNOWN_SEVERITY';
 }
 
+function isHighSurrogate(ch) {
+  return 0xD800 <= ch && ch < 0xDC00;
+}
+
+function isLowSurrogate(ch) {
+  return 0xDC00 <= ch && ch < 0xE000;
+}
+
 function utf8length(str) {
   return unescape(encodeURIComponent(str)).length;
 }
@@ -48,10 +56,23 @@ function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines)
 
 function commonSuffixLength(str1, str2) {
   let i = 0;
+  let seenSurrogate = false;
   for (i = 0; i < str1.length && i < str2.length; ++i) {
-    if (str1[str1.length-(i+1)] !== str2[str2.length-(i+1)]) {
+    const ch1 = str1.charCodeAt(str1.length-(i+1));
+    const ch2 = str2.charCodeAt(str2.length-(i+1));
+    if (ch1 !== ch2) {
+      if (seenSurrogate) {
+        if (!isHighSurrogate(ch1) || !isHighSurrogate(ch2)) {
+          throw new Error("invalid surrogate character");
+        }
+        // i is now between a low surrogate and a high surrogate.
+        // we need to remove the low surrogate from the common suffix
+        // to avoid breaking surrogate pairs.
+        i--;
+      }
       break;
     }
+    seenSurrogate = isLowSurrogate(ch1);
   }
   return i;
 }
