@@ -15,11 +15,11 @@ function convertSeverity(s) {
 }
 
 function isHighSurrogate(ch) {
-  return 0xD800 <= ch && ch <= 0xDC00;
+  return 0xD800 <= ch && ch < 0xDC00;
 }
 
 function isLowSurrogate(ch) {
-  return 0xDC00 <= ch && ch <= 0xE000;
+  return 0xDC00 <= ch && ch < 0xE000;
 }
 
 function utf8length(str) {
