@@ -23,7 +23,26 @@ function isLowSurrogate(ch) {
 }
 
 function utf8length(str) {
-  return unescape(encodeURIComponent(str)).length;
+  let length = 0;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str.charCodeAt(i);
+    if (isHighSurrogate(ch)) {
+      i++;
+      length += 4;
+      if (i >= str.length || !isLowSurrogate(str.charCodeAt(i))) {
+        throw new Error("invalid surrogate character");
+      }
+    } else if (isLowSurrogate(ch)) {
+      throw new Error("invalid surrogate character");
+    } else if (ch < 0x80) {
+      length++;
+    } else if (ch < 0x0800) {
+      length += 2;
+    } else {
+      length += 3;
+    }
+  }
+  return length;
 }
 
 function positionFromUTF16CodeUnitOffset(offset, text) {
