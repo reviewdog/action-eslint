@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: yarn install
       - name: Test eslint-formatter-rdjson
         run: ./eslint-formatter-rdjson/test.sh
