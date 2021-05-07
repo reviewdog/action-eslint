@@ -5,6 +5,24 @@
   },
   "diagnostics": [
     {
+      "message": "Parsing error: Unexpected character '🐶'",
+      "location": {
+        "path": "testdata/error.js",
+        "range": {
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      },
+      "severity": "ERROR",
+      "code": {
+        "value": null,
+        "url": ""
+      },
+      "original_output": "{\"ruleId\":null,\"fatal\":true,\"severity\":2,\"message\":\"Parsing error: Unexpected character '🐶'\",\"line\":1,\"column\":1}"
+    },
+    {
       "message": "'test' is defined but never used.",
       "location": {
         "path": "testdata/test.js",
@@ -74,7 +92,7 @@
           },
           "end": {
             "line": 6,
-            "column": 3
+            "column": 4
           }
         }
       },
@@ -295,7 +313,7 @@
           },
           "end": {
             "line": 4,
-            "column": 25
+            "column": 26
           }
         }
       },
@@ -332,7 +350,7 @@
           },
           "end": {
             "line": 5,
-            "column": 19
+            "column": 20
           }
         }
       },
@@ -428,7 +446,7 @@
           },
           "end": {
             "line": 13,
-            "column": 3
+            "column": 4
           }
         }
       },
@@ -524,7 +542,7 @@
           },
           "end": {
             "line": 12,
-            "column": 5
+            "column": 6
           }
         }
       },
@@ -546,7 +564,7 @@
           },
           "end": {
             "line": 14,
-            "column": 2
+            "column": 3
           }
         }
       },
@@ -642,7 +660,7 @@
           },
           "end": {
             "line": 17,
-            "column": 1
+            "column": 2
           }
         }
       },
@@ -679,7 +697,7 @@
           },
           "end": {
             "line": 18,
-            "column": 22
+            "column": 23
           }
         }
       },

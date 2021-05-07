@@ -67,8 +67,12 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
 function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines) {
   let col = 0;
   if (sourceLines.length >= line) {
-    const lineText = sourceLines[line-1].slice(0, column);
-    col = utf8length(lineText);
+    // the column is 1-origin index, but String.prototype.slice() expects 0-origin index.
+    // so we call slice(0, column-1).
+    const lineText = sourceLines[line-1].slice(0, column-1);
+
+    // +1 because utf8length returns 0-origin index, whether we want 1-origin index.
+    col = utf8length(lineText) + 1;
   }
   return {line: line, column: col};
 }
@@ -121,13 +125,12 @@ module.exports = function (results, data) {
     const source = result.source;
     const sourceLines = source ? source.split('\n') : [];
     result.messages.forEach(msg => {
-      let diagnostic = {
+      const diagnostic = {
         message: msg.message,
         location: {
           path: filePath,
           range: {
-            start: positionFromLineAndUTF16CodeUnitOffsetColumn(msg.line, msg.column, sourceLines),
-            end:positionFromLineAndUTF16CodeUnitOffsetColumn(msg.endLine, msg.endColumn, sourceLines)
+            start: positionFromLineAndUTF16CodeUnitOffsetColumn(msg.line, msg.column, sourceLines)
           }
         },
         severity: convertSeverity(msg.severity),
@@ -137,6 +140,11 @@ module.exports = function (results, data) {
         },
         original_output: JSON.stringify(msg)
       };
+
+      // the end of the range is optional
+      if (msg.endLine && msg.endColumn) {
+        diagnostic.location.range.end = positionFromLineAndUTF16CodeUnitOffsetColumn(msg.endLine, msg.endColumn, sourceLines)
+      }
 
       if (msg.fix) {
         diagnostic.suggestions = [buildMinimumSuggestion(msg.fix, source)];
