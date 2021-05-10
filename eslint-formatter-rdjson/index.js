@@ -64,11 +64,38 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
   return {line: lnum, column: column};
 }
 
+// How to get UTF-8 column from UTF-16 code unit column.
+// 1. Extract the line text until the column (exclusive).
+//    This is important when the character at the column is surrogate pair.
+// 2. Count length of the extracted line text in UTF-8.
+// 3. +1 to the length to get the UTF-8 column.
+//
+// Example:
+// - sourceLines: ["haya🐶🐱busa"]
+// - line: 1
+// - column: 7
+// - Expected output: {line: 1, column: 9}
+//
+// Ref:
+// - UTF-16 length("🐶"): 2
+// - UTF-8  length("🐶"): 4
+//                               v------- INPUT: {line: 1, column: 7}
+//                         haya🐶🐱busa
+// UTF-16 Column  (input): 12345 7 9012
+// UTF-8  Column (output): 12345 9 3456
+//                         ~~~~~~ <= utf8length("haya🐶") = 8
+//
+// The given position points to "🐱" (line:1, column: 7)
+// 1. Extract the line text until the column (exclusive): "haya🐶"
+// 2. Count length of the extracted line text in UTF-8: utf8length("haya🐶") = 8
+// 3. +1 to the length to get the UTF-8 column: 9
 function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines) {
   let col = 0;
   if (sourceLines.length >= line) {
-    const lineText = sourceLines[line-1].slice(0, column);
-    col = utf8length(lineText);
+    // 1. Extract the line text until the column (exclusive)
+    const lineText = sourceLines[line-1].slice(0, column-1);
+    // 2&3. Count length of the extracted line text in UTF-8 and +1.
+    col = utf8length(lineText) + 1;
   }
   return {line: line, column: col};
 }
@@ -121,13 +148,12 @@ module.exports = function (results, data) {
     const source = result.source;
     const sourceLines = source ? source.split('\n') : [];
     result.messages.forEach(msg => {
-      let diagnostic = {
+      const diagnostic = {
         message: msg.message,
         location: {
           path: filePath,
           range: {
-            start: positionFromLineAndUTF16CodeUnitOffsetColumn(msg.line, msg.column, sourceLines),
-            end:positionFromLineAndUTF16CodeUnitOffsetColumn(msg.endLine, msg.endColumn, sourceLines)
+            start: positionFromLineAndUTF16CodeUnitOffsetColumn(msg.line, msg.column, sourceLines)
           }
         },
         severity: convertSeverity(msg.severity),
@@ -137,6 +163,11 @@ module.exports = function (results, data) {
         },
         original_output: JSON.stringify(msg)
       };
+
+      // the end of the range is optional
+      if (msg.endLine && msg.endColumn) {
+        diagnostic.location.range.end = positionFromLineAndUTF16CodeUnitOffsetColumn(msg.endLine, msg.endColumn, sourceLines)
+      }
 
       if (msg.fix) {
         diagnostic.suggestions = [buildMinimumSuggestion(msg.fix, source)];
