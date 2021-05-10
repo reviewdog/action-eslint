@@ -92,11 +92,9 @@ function positionFromUTF16CodeUnitOffset(offset, text) {
 function positionFromLineAndUTF16CodeUnitOffsetColumn(line, column, sourceLines) {
   let col = 0;
   if (sourceLines.length >= line) {
-    // the column is 1-origin index, but String.prototype.slice() expects 0-origin index.
-    // so we call slice(0, column-1).
+    // 1. Extract the line text until the column (exclusive)
     const lineText = sourceLines[line-1].slice(0, column-1);
-
-    // +1 because utf8length returns 0-origin index, whether we want 1-origin index.
+    // 2&3. Count length of the extracted line text in UTF-8 and +1.
     col = utf8length(lineText) + 1;
   }
   return {line: line, column: col};
