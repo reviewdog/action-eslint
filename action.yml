@@ -51,7 +51,7 @@ runs:
     - run: $GITHUB_ACTION_PATH/script.sh
       shell: bash
       env:
-        REVIEWDOG_VERSION: v0.12.0
+        REVIEWDOG_VERSION: v0.13.0
         # INPUT_<VARIABLE_NAME> is not available in Composite run steps
         # https://github.community/t/input-variable-name-is-not-available-in-composite-run-steps/127611
         INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
