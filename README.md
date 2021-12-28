@@ -54,6 +54,10 @@ Optional. Flags and args of eslint command. Default: '.'
 
 Optional. The directory from which to look for and run eslint. Default '.'
 
+### `node_options`
+
+Optional. The NODE_OPTIONS environment variable to use with eslint. Default is ''.
+
 ## Example usage
 
 You also need to install [eslint](https://github.com/eslint/eslint).
