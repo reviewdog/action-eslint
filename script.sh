@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ -n "${GITHUB_WORKSPACE}" ] ; then
-  cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit
+  cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
   git config --global --add safe.directory "${GITHUB_WORKSPACE}" || exit 1
 fi
 
