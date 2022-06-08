@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "stylelint": "^14.0.0",
-    "stylelint-config-recommended": "^7.0.0"
+    "stylelint-config-recommended": "^8.0.0"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
