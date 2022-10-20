@@ -80,10 +80,14 @@ jobs:
   eslint:
     name: runner / eslint
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write 
     steps:
       - uses: actions/checkout@v2
       - uses: reviewdog/action-eslint@v1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review # Change reporter.
           eslint_flags: 'src/'
 ```
