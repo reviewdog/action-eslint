@@ -4,17 +4,17 @@
   "description": "[![Docker Image CI](https://github.com/reviewdog/action-eslint/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/reviewdog/action-eslint/actions) [![Release](https://img.shields.io/github/release/reviewdog/action-eslint.svg?maxAge=43200)](https://github.com/reviewdog/action-eslint/releases)",
   "main": "index.js",
   "dependencies": {
-    "stylelint": "^14.0.0",
+    "stylelint": "^14.16.0",
     "stylelint-config-recommended": "^9.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.12.1",
-    "eslint-config-standard": "^16.0.1",
+    "eslint": "^8.29.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-formatter-rdjson": "file:eslint-formatter-rdjson",
-    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-import": "2.26",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-standard": "^4.0.1"
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-standard": "^5.0.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
