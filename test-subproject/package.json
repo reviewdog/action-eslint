@@ -4,7 +4,7 @@
   "description": "A test subprojet for testing reviewdog/action-eslint",
   "main": "index.js",
   "dependencies": {
-    "stylelint": "^14.0.0",
+    "stylelint": "^15.0.0",
     "stylelint-config-recommended": "^10.0.0"
   },
   "devDependencies": {
