@@ -11,7 +11,7 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
-npx --offline eslint --version
+npx --no-install -c 'eslint --version'
 if [ $? -ne 0 ]; then
   echo '::group:: Running `npm install` to install eslint ...'
   npm install
@@ -21,7 +21,7 @@ fi
 echo "eslint version:$(npx --offline eslint --version)"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
-npx --offline eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
+npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \

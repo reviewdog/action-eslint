@@ -4,8 +4,18 @@ jobs:
   eslint:
     name: runner / eslint
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node_version: [14, 16, 18]
+
     steps:
       - uses: actions/checkout@v3
+      - name: setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node_version }}
       - name: eslint-github-pr-check
         uses: ./
         with:
