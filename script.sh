@@ -18,7 +18,7 @@ if [ $? -ne 0 ]; then
   echo '::endgroup::'
 fi
 
-echo "eslint version:$(npx --offline eslint --version)"
+echo "eslint version:$(npx --no-install -c 'eslint --version')"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
 npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
