@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node_version: [14, 16, 18]
+        node_version: ["14", "16", "18", "20"]
 
     steps:
       - uses: actions/checkout@v3
@@ -22,33 +22,33 @@ jobs:
           tool_name: eslint-github-pr-check
           reporter: github-pr-check
           level: info
-          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+          eslint_flags: "testdata/ --ignore-pattern /test-subproject/"
       - name: eslint-github-check
         uses: ./
         with:
           tool_name: eslint-github-check
           reporter: github-check
           level: warning
-          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+          eslint_flags: "testdata/ --ignore-pattern /test-subproject/"
       - name: eslint-github-pr-review
         uses: ./
         with:
           tool_name: eslint-github-pr-review
           reporter: github-pr-review
-          eslint_flags: 'testdata/ --ignore-pattern /test-subproject/'
+          eslint_flags: "testdata/ --ignore-pattern /test-subproject/"
       - name: eslint-subproject-github-pr-review
         uses: ./
         with:
           tool_name: eslint-subproject-github-pr-review
           reporter: github-pr-review
           workdir: ./test-subproject
-          eslint_flags: 'sub-testdata/'
+          eslint_flags: "sub-testdata/"
       - name: eslint-subproject
         uses: ./
         with:
           tool_name: eslint-subproject
           workdir: ./test-subproject
-          eslint_flags: 'sub-testdata/'
+          eslint_flags: "sub-testdata/"
           reporter: github-check
           level: warning
           filter_mode: file
