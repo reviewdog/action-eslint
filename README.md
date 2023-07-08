@@ -21,25 +21,25 @@ code review experience.
 
 ### `level`
 
-Optional. Report level for reviewdog [info,warning,error].
+Optional. Report level for reviewdog \[`info`,`warning`,`error`\].
 It's same as `-level` flag of reviewdog.
 
 ### `reporter`
 
-Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].
-Default is github-pr-review.
+Reporter of reviewdog command \[`github-pr-check`,`github-check`,`github-pr-review`\].
+Default is `github-pr-review`.
 It's same as `-reporter` flag of reviewdog.
 
-github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
+`github-pr-review` can use Markdown and add a link to rule page in reviewdog reports.
 
 ### `filter_mode`
 
-Optional. Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
+Optional. Filtering mode for the reviewdog command \[`added`,`diff_context`,`file`,`nofilter`\].
 Default is added.
 
 ### `fail_on_error`
 
-Optional.  Exit code for reviewdog when errors are found [true,false]
+Optional. Exit code for reviewdog when errors are found \[`true`,`false`\]
 Default is `false`.
 
 ### `reviewdog_flags`
@@ -82,14 +82,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write 
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review # Change reporter.
-          eslint_flags: 'src/'
+          eslint_flags: "src/"
 ```
 
 You can also set up node and eslint manually like below.
@@ -102,13 +102,13 @@ jobs:
     name: runner / eslint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: "20"
       - run: yarn install
       - uses: reviewdog/action-eslint@v1
         with:
           reporter: github-check
-          eslint_flags: 'src/'
+          eslint_flags: "src/"
 ```
