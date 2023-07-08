@@ -12,6 +12,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - run: yarn install
+          cache: "npm"
+      - run: npm ci
       - name: Test eslint-formatter-rdjson
         run: ./eslint-formatter-rdjson/test.sh
