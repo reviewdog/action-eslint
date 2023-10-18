@@ -14,7 +14,7 @@ jobs:
       - run: npm install
       - name: Test eslint-formatter-rdjson
         run: ./eslint-formatter-rdjson/test.sh
-      - uses: JS-DevTools/npm-publish@v2
+      - uses: JS-DevTools/npm-publish@v3
         with:
           package: ./eslint-formatter-rdjson/package.json
           token: ${{ secrets.NPM_TOKEN }}
