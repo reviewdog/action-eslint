@@ -8,7 +8,7 @@
     "stylelint-config-recommended": "^13.0.0"
   },
   "devDependencies": {
-    "eslint": "^8.0.0",
+    "eslint": "^9.0.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-formatter-rdjson": "file:eslint-formatter-rdjson",
     "eslint-plugin-import": "^2.22.1",
