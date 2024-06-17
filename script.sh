@@ -14,7 +14,9 @@ echo '::endgroup::'
 npx --no-install -c 'eslint --version'
 if [ $? -ne 0 ]; then
   echo '::group:: Running `npm install` to install eslint ...'
+  set -e
   npm install
+  set +e
   echo '::endgroup::'
 fi
 
