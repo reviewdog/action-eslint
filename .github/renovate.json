@@ -4,9 +4,5 @@
   ],
   "rangeStrategy": "replace",
   "packageRules": [
-    {
-      "groupName": "stylelint",
-      "matchPackageNames": ["stylelint", "stylelint-config-recommended"]
-    }
   ]
 }
