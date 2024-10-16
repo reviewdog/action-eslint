@@ -12,10 +12,17 @@ echo '::endgroup::'
 # Add reviewdog to PATH
 export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
 
-echo '::group:: Installing ESLint and plugins in action directory...'
+echo '::group:: Copying package.json and package-lock.json to workdir...'
+cp "${GITHUB_ACTION_PATH}/package.json" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/"
+cp "${GITHUB_ACTION_PATH}/package-lock.json" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/"
+echo '::endgroup::'
 
-# Install dependencies in the action's directory
-cd "${GITHUB_ACTION_PATH}" || exit 1
+# Change directory to your repository's workdir
+cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
+
+echo '::group:: Installing ESLint and plugins in workdir...'
+
+# Install dependencies in the workdir
 npm install
 if [ $? -ne 0 ]; then
   echo "npm install failed"
@@ -27,7 +34,7 @@ echo '::endgroup::'
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
 
-npx eslint --resolve-plugins-relative-to "${GITHUB_ACTION_PATH}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+npx eslint --resolve-plugins-relative-to "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 eslint_exit_code=$?
 
 # Check if ESLint execution was successful
@@ -36,9 +43,6 @@ if [ $eslint_exit_code -ne 0 ] && [ $eslint_exit_code -ne 1 ]; then
   cat "$eslint_output"
   exit $eslint_exit_code
 fi
-
-# Change directory to your repository's workdir
-cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
 
 # Use reviewdog from the action's bin directory
 cat "$eslint_output" | reviewdog -f=rdjson \
