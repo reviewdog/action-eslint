@@ -40,6 +40,7 @@ npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}"
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
+      -tee \
       ${INPUT_REVIEWDOG_FLAGS}
 
 reviewdog_rc=$?
