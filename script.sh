@@ -19,12 +19,12 @@ if ! command -v eslint &> /dev/null; then
   echo '::endgroup::'
 fi
 
-PATH="${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
+NPM_PATH="${GITHUB_ACTION_PATH}/node_modules/.bin"
 
 echo "eslint version: $(eslint --version)"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
-npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
+npx --no-install -c "$NPM_PATH/eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
   | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
