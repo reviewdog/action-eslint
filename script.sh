@@ -16,7 +16,7 @@ ls -la .
 
 echo '::group:: Running `npm install` to install eslint and plugins ...'
 set -e
-npm install -g
+npm install
 set +e
 echo '::endgroup::'
 
