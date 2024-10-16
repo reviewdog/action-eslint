@@ -12,11 +12,9 @@ echo '::endgroup::'
 
 echo '::group:: Running `npm install` to install eslint and plugins ...'
 set -e
-npm install
+npm install -g
 set +e
 echo '::endgroup::'
-
-echo "eslint version: $(${GITHUB_ACTION_PATH}/node_modules/.bin/eslint --version)"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
 eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
