@@ -6,8 +6,6 @@ TEMP_PATH="$(mktemp -d)"
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 ESLINT_FORMATTER="${GITHUB_ACTION_PATH}/eslint-formatter-rdjson/index.js"
 
-export BINDIR=$GITHUB_ACTION_PATH
-
 echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
@@ -22,7 +20,7 @@ npm install --prefix "${GITHUB_ACTION_PATH}"
 set +e
 echo '::endgroup::'
 
-export PATH="${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
+export PATH="${GITHUB_ACTION_PATH}/.bin:${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
 # list all installed packages
 npm list -g --depth=0
 
