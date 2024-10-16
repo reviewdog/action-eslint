@@ -26,7 +26,7 @@ fi
 
 # Install only devDependencies
 cd "${TEMP_ESLINT_DIR}" || exit 1
-npm ci --only=dev
+npm ci
 if [ $? -ne 0 ]; then
   echo "npm ci failed"
   exit 1
