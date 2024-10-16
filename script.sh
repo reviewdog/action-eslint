@@ -18,38 +18,25 @@ mkdir -p "${TEMP_ESLINT_DIR}"
 
 echo '::group:: Installing ESLint and plugins in temporary directory...'
 
-# Create a minimal package.json with ESLint and required plugins
-cat > "${TEMP_ESLINT_DIR}/package.json" <<EOF
-{
-  "name": "eslint-action-temp",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "eslint": "^8.0.0",
-    "eslint-plugin-react": "^7.0.0",
-    "eslint-plugin-cypress": "^2.0.0"
-    // Add other required plugins here
-  }
-}
-EOF
+# Copy package.json and package-lock.json to temporary directory
+cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package.json" "${TEMP_ESLINT_DIR}/"
+if [ -f "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" ]; then
+  cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" "${TEMP_ESLINT_DIR}/"
+fi
 
-# Install the devDependencies
+# Install only devDependencies
 cd "${TEMP_ESLINT_DIR}" || exit 1
-npm install
+npm ci --only=dev
 if [ $? -ne 0 ]; then
-  echo "npm install failed"
+  echo "npm ci failed"
   exit 1
 fi
 echo '::endgroup::'
 
-# Optionally list the installed binaries
-echo 'Installed binaries in temp_eslint/node_modules/.bin/:'
-ls -l "${TEMP_ESLINT_DIR}/node_modules/.bin/"
-
+# Use npx to run ESLint
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
 
-# Run ESLint using npx, which uses the local installation
 npx eslint --resolve-plugins-relative-to "${TEMP_ESLINT_DIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 eslint_exit_code=$?
 
