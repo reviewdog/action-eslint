@@ -12,25 +12,11 @@ echo '::endgroup::'
 # Add reviewdog to PATH
 export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
 
-# Create a temporary directory for installing ESLint and plugins
-TEMP_ESLINT_DIR="${GITHUB_ACTION_PATH}/temp_eslint"
-mkdir -p "${TEMP_ESLINT_DIR}"
+echo '::group:: Installing ESLint and plugins in action directory...'
 
-echo '::group:: Copying package.json and package-lock.json to temporary directory...'
-
-# Copy package.json and package-lock.json to temporary directory
-cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package.json" "${TEMP_ESLINT_DIR}/"
-if [ -f "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" ]; then
-  cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" "${TEMP_ESLINT_DIR}/"
-fi
-
-echo '::endgroup::'
-
-echo '::group:: Installing devDependencies in temporary directory...'
-
-# Install only devDependencies
-cd "${TEMP_ESLINT_DIR}" || exit 1
-npm install --only=dev
+# Install dependencies in the action's directory
+cd "${GITHUB_ACTION_PATH}" || exit 1
+npm install
 if [ $? -ne 0 ]; then
   echo "npm install failed"
   exit 1
@@ -41,7 +27,7 @@ echo '::endgroup::'
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
 
-npx eslint --resolve-plugins-relative-to "${TEMP_ESLINT_DIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+npx eslint --resolve-plugins-relative-to "${GITHUB_ACTION_PATH}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 eslint_exit_code=$?
 
 # Check if ESLint execution was successful
