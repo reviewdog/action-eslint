@@ -9,10 +9,6 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
 echo '::endgroup::'
 
-# DEBUG
-pwd
-ls -la .
-
 echo '::group:: Running `npm install` to install eslint and plugins ...'
 set -e
 npm install --prefix "${GITHUB_ACTION_PATH}"
@@ -20,14 +16,6 @@ set +e
 echo '::endgroup::'
 
 export PATH="${GITHUB_ACTION_PATH}/.bin:${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
-# list all installed packages
-npm list -g --depth=0
-
-# debug
-which eslint
-which reviewdog
-
-ls -la ./bin/reviewdog
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
 eslint -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
@@ -37,9 +25,7 @@ eslint -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
-      -workdir="${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
-      ${INPUT_REVIEWDOG_FLAGS} \
-      "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
+      ${INPUT_REVIEWDOG_FLAGS}
 
 reviewdog_rc=$?
 echo '::endgroup::'
