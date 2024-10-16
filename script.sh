@@ -30,30 +30,17 @@ if [ $? -ne 0 ]; then
 fi
 echo '::endgroup::'
 
-# Use npx to run ESLint
-echo '::group:: Running ESLint with reviewdog 🐶 ...'
-eslint_output=$(mktemp)
+echo "eslint version:$(npx --no-install -c 'eslint --version')"
 
-npx eslint --resolve-plugins-relative-to "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
-eslint_exit_code=$?
-
-# Check if ESLint execution was successful
-if [ $eslint_exit_code -ne 0 ] && [ $eslint_exit_code -ne 1 ]; then
-  echo "ESLint failed to run"
-  cat "$eslint_output"
-  exit $eslint_exit_code
-fi
-
-# Use reviewdog from the action's bin directory
-cat "$eslint_output" | reviewdog -f=rdjson \
+echo '::group:: Running eslint with reviewdog 🐶 ...'
+npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
+  | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
       ${INPUT_REVIEWDOG_FLAGS}
-
-rm "$eslint_output"
 
 reviewdog_rc=$?
 echo '::endgroup::'
