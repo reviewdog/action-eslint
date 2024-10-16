@@ -27,7 +27,7 @@ echo '::endgroup::'
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
 
-npx eslint -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+npx eslint --resolve-plugins-relative-to "${GITHUB_ACTION_PATH}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 eslint_exit_code=$?
 
 # Check if ESLint execution was successful
