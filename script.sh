@@ -16,7 +16,7 @@ export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
 TEMP_ESLINT_DIR="${GITHUB_ACTION_PATH}/temp_eslint"
 mkdir -p "${TEMP_ESLINT_DIR}"
 
-echo '::group:: Installing ESLint and plugins in temporary directory...'
+echo '::group:: Copying package.json and package-lock.json to temporary directory...'
 
 # Copy package.json and package-lock.json to temporary directory
 cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package.json" "${TEMP_ESLINT_DIR}/"
@@ -24,11 +24,15 @@ if [ -f "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" ]; then
   cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" "${TEMP_ESLINT_DIR}/"
 fi
 
+echo '::endgroup::'
+
+echo '::group:: Installing devDependencies in temporary directory...'
+
 # Install only devDependencies
 cd "${TEMP_ESLINT_DIR}" || exit 1
-npm ci
+npm install --only=dev
 if [ $? -ne 0 ]; then
-  echo "npm ci failed"
+  echo "npm install failed"
   exit 1
 fi
 echo '::endgroup::'
