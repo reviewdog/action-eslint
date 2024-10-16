@@ -16,10 +16,11 @@ ls -la .
 
 echo '::group:: Running `npm install` to install eslint and plugins ...'
 set -e
-npm install
+npm install --prefix "${GITHUB_ACTION_PATH}"
 set +e
 echo '::endgroup::'
 
+export PATH="${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
 # list all installed packages
 npm list -g --depth=0
 
@@ -32,7 +33,7 @@ eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
       -workdir="${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
-      ${INPUT_REVIEWDOG_FLAGS}
+      ${INPUT_REVIEWDOG_FLAGS} \
       "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
 
 reviewdog_rc=$?
