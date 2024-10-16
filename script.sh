@@ -1,28 +1,38 @@
 #!/bin/sh
 
+# Change directory to the action path
 cd "${GITHUB_ACTION_PATH}" || exit 1
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 ESLINT_FORMATTER="${GITHUB_ACTION_PATH}/eslint-formatter-rdjson/index.js"
 
 echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
-curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s
+# Install reviewdog to a known directory
+curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${GITHUB_ACTION_PATH}/bin"
 echo '::endgroup::'
 
-echo '::group:: Running `npm install` to install eslint and plugins ...'
+# Add reviewdog to PATH
+export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
+
+echo '::group:: Running `npm install` to install ESLint and plugins ...'
 set -e
-npm install --prefix "${GITHUB_ACTION_PATH}"
+# Change directory to your repository's workdir
+cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
+# Install ESLint and all required plugins specified in your .eslintrc.js
+npm install eslint eslint-plugin-react --no-save
 set +e
 echo '::endgroup::'
 
-export PATH="${GITHUB_ACTION_PATH}/.bin:${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
+# Add node_modules binaries to PATH
+export PATH="${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/node_modules/.bin:${PATH}"
 
-echo '::group:: Running eslint with reviewdog 🐶 ...'
+echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
+# Run ESLint using the formatter
 eslint -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 
-cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
-cat "$eslint_output" | ./bin/reviewdog -f=rdjson \
+# Use reviewdog from PATH
+cat "$eslint_output" | reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
