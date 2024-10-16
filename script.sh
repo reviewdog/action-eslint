@@ -11,8 +11,7 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
-npx --no-install -c 'eslint --version'
-if [ $? -ne 0 ]; then
+if ! command -v eslint &> /dev/null; then
   echo '::group:: Running `npm install` to install eslint ...'
   set -e
   npm install --prefix "${GITHUB_ACTION_PATH}"
@@ -20,7 +19,9 @@ if [ $? -ne 0 ]; then
   echo '::endgroup::'
 fi
 
-echo "eslint version:$(npx --no-install -c 'eslint --version')"
+PATH="${GITHUB_ACTION_PATH}/node_modules/.bin:$PATH"
+
+echo "eslint version: $(eslint --version)"
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
 npx --no-install -c "eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'}" \
