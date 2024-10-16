@@ -28,7 +28,7 @@ eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
       -level="${INPUT_LEVEL}" \
       -workdir="${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
       ${INPUT_REVIEWDOG_FLAGS}
-      ${GITHUB_ACTION_PATH}
+      "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}"
 
 reviewdog_rc=$?
 echo '::endgroup::'
