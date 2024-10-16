@@ -13,29 +13,39 @@ echo '::endgroup::'
 export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
 
 # Create a temporary directory for installing ESLint and plugins
-TEMP_NODE_MODULES="${GITHUB_ACTION_PATH}/temp_node_modules"
-mkdir -p "${TEMP_NODE_MODULES}"
+TEMP_ESLINT_DIR="${GITHUB_ACTION_PATH}/temp_eslint"
+mkdir -p "${TEMP_ESLINT_DIR}"
 
 echo '::group:: Installing ESLint and plugins in temporary directory...'
 
-# Copy package.json and package-lock.json if they exist
-cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package.json" "${TEMP_NODE_MODULES}/"
-if [ -f "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" ]; then
-  cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" "${TEMP_NODE_MODULES}/"
-fi
+# Create a minimal package.json with ESLint and required plugins
+cat > "${TEMP_ESLINT_DIR}/package.json" <<EOF
+{
+  "name": "eslint-action-temp",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-plugin-react": "^7.0.0",
+    "eslint-plugin-cypress": "^2.0.0"
+    // Add other required plugins here
+  }
+}
+EOF
 
-# Install only devDependencies
-cd "${TEMP_NODE_MODULES}" || exit 1
-npm ci --only=dev
+# Install the devDependencies
+cd "${TEMP_ESLINT_DIR}" || exit 1
+npm install
 echo '::endgroup::'
 
 # Add the temporary node_modules/.bin to PATH
-export PATH="${TEMP_NODE_MODULES}/node_modules/.bin:${PATH}"
+export PATH="${TEMP_ESLINT_DIR}/node_modules/.bin:${PATH}"
 
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
+
 # Run ESLint with --resolve-plugins-relative-to pointing to the temp directory
-eslint --resolve-plugins-relative-to "${TEMP_NODE_MODULES}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+eslint --resolve-plugins-relative-to "${TEMP_ESLINT_DIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 
 # Change directory to your repository's workdir
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
