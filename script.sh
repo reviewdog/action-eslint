@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Set up variables
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
@@ -36,16 +36,29 @@ EOF
 # Install the devDependencies
 cd "${TEMP_ESLINT_DIR}" || exit 1
 npm install
+if [ $? -ne 0 ]; then
+  echo "npm install failed"
+  exit 1
+fi
 echo '::endgroup::'
 
-# Add the temporary node_modules/.bin to PATH
-export PATH="${TEMP_ESLINT_DIR}/node_modules/.bin:${PATH}"
+# Optionally list the installed binaries
+echo 'Installed binaries in temp_eslint/node_modules/.bin/:'
+ls -l "${TEMP_ESLINT_DIR}/node_modules/.bin/"
 
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
 
-# Run ESLint with --resolve-plugins-relative-to pointing to the temp directory
-eslint --resolve-plugins-relative-to "${TEMP_ESLINT_DIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+# Run ESLint using npx, which uses the local installation
+npx eslint --resolve-plugins-relative-to "${TEMP_ESLINT_DIR}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+eslint_exit_code=$?
+
+# Check if ESLint execution was successful
+if [ $eslint_exit_code -ne 0 ] && [ $eslint_exit_code -ne 1 ]; then
+  echo "ESLint failed to run"
+  cat "$eslint_output"
+  exit $eslint_exit_code
+fi
 
 # Change directory to your repository's workdir
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
