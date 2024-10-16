@@ -27,9 +27,11 @@ npm list -g --depth=0
 which eslint
 which reviewdog
 
+ls -la ./bin/reviewdog
+
 echo '::group:: Running eslint with reviewdog 🐶 ...'
-eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
-  | reviewdog -f=rdjson \
+eslint -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" \
+  | ./bin/reviewdog -f=rdjson \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
