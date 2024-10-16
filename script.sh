@@ -1,31 +1,41 @@
 #!/bin/sh
 
-# Change directory to the action path
-cd "${GITHUB_ACTION_PATH}" || exit 1
-
+# Set up variables
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 ESLINT_FORMATTER="${GITHUB_ACTION_PATH}/eslint-formatter-rdjson/index.js"
 
+# Install reviewdog
 echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
-# Install reviewdog to the action's bin directory
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${GITHUB_ACTION_PATH}/bin"
 echo '::endgroup::'
 
 # Add reviewdog to PATH
 export PATH="${GITHUB_ACTION_PATH}/bin:${PATH}"
 
-echo '::group:: Installing ESLint and required plugins in the action directory...'
-# Install ESLint and required plugins in the action's directory
-npm install eslint eslint-plugin-react --prefix "${GITHUB_ACTION_PATH}" --no-save
+# Create a temporary directory for installing ESLint and plugins
+TEMP_NODE_MODULES="${GITHUB_ACTION_PATH}/temp_node_modules"
+mkdir -p "${TEMP_NODE_MODULES}"
+
+echo '::group:: Installing ESLint and plugins in temporary directory...'
+
+# Copy package.json and package-lock.json if they exist
+cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package.json" "${TEMP_NODE_MODULES}/"
+if [ -f "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" ]; then
+  cp "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}/package-lock.json" "${TEMP_NODE_MODULES}/"
+fi
+
+# Install only devDependencies
+cd "${TEMP_NODE_MODULES}" || exit 1
+npm ci --only=dev
 echo '::endgroup::'
 
-# Add action's node_modules binaries to PATH
-export PATH="${GITHUB_ACTION_PATH}/node_modules/.bin:${PATH}"
+# Add the temporary node_modules/.bin to PATH
+export PATH="${TEMP_NODE_MODULES}/node_modules/.bin:${PATH}"
 
 echo '::group:: Running ESLint with reviewdog 🐶 ...'
 eslint_output=$(mktemp)
-# Run ESLint with --resolve-plugins-relative-to pointing to the action's directory
-eslint --resolve-plugins-relative-to "${GITHUB_ACTION_PATH}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
+# Run ESLint with --resolve-plugins-relative-to pointing to the temp directory
+eslint --resolve-plugins-relative-to "${TEMP_NODE_MODULES}" -f="${ESLINT_FORMATTER}" "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" > "$eslint_output"
 
 # Change directory to your repository's workdir
 cd "${GITHUB_WORKSPACE}/${INPUT_WORKDIR}" || exit 1
