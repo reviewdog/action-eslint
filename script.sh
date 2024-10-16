@@ -10,11 +10,18 @@ echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/review
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
 echo '::endgroup::'
 
+# DEBUG
+pwd
+ls -la .
+
 echo '::group:: Running `npm install` to install eslint and plugins ...'
 set -e
 npm install -g
 set +e
 echo '::endgroup::'
+
+# list all installed packages
+npm list -g --depth=0
 
 echo '::group:: Running eslint with reviewdog 🐶 ...'
 eslint -f="${ESLINT_FORMATTER}" ${INPUT_ESLINT_FLAGS:-'.'} \
