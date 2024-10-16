@@ -15,7 +15,7 @@ npx --no-install -c 'eslint --version'
 if [ $? -ne 0 ]; then
   echo '::group:: Running `npm install` to install eslint ...'
   set -e
-  npm install
+  npm install --prefix "${GITHUB_ACTION_PATH}"
   set +e
   echo '::endgroup::'
 fi
