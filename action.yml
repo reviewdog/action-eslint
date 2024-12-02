@@ -23,10 +23,18 @@ inputs:
       Default is added.
     required: false
     default: 'added'
+  fail_level:
+    description: |
+      If set to `none`, always use exit code 0 for reviewdog. Otherwise, exit code 1 for reviewdog if it finds at least 1 issue with severity greater than or equal to the given level.
+      Possible values: [none,any,info,warning,error]
+      Default is `none`.
+    default: 'none'
   fail_on_error:
     description: |
+      Deprecated, use `fail_level` instead.
       Exit code for reviewdog when errors are found [true,false]
       Default is `false`.
+    deprecationMessage: Deprecated, use `fail_level` instead.
     required: false
     default: 'false'
   reviewdog_flags:
@@ -62,6 +70,7 @@ runs:
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}
         INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_LEVEL: ${{ inputs.fail_level }}
         INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_ESLINT_FLAGS: ${{ inputs.eslint_flags }}
