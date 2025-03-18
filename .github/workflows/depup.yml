@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: haya14busa/action-depup@d6b40096afad49ca676145faaba7190df29a9807 # v1.6.3
+      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
         id: depup
         with:
           file: action.yml
