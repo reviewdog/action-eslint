@@ -9,8 +9,8 @@ jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: haya14busa/action-depup@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: haya14busa/action-depup@d6b40096afad49ca676145faaba7190df29a9807 # v1.6.3
         id: depup
         with:
           file: action.yml
@@ -18,7 +18,7 @@ jobs:
           repo: reviewdog/reviewdog
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update reviewdog to ${{ steps.depup.outputs.latest }}"
