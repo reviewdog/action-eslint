@@ -32,6 +32,12 @@ It's same as `-reporter` flag of reviewdog.
 
 `github-pr-review` can use Markdown and add a link to rule page in reviewdog reports.
 
+### `tool_name`
+
+Optional. Tool name to use for reviewdog reporter. Default is `eslint`.
+This becomes the check/run name on GitHub (e.g., for `github-check`/`github-pr-check`) and the tool label in review comments.
+Useful when running in a matrix to distinguish checks, e.g. `eslint-${{ matrix.node_version }}`.
+
 ### `filter_mode`
 
 Optional. Filtering mode for the reviewdog command \[`added`,`diff_context`,`file`,`nofilter`\].
@@ -117,5 +123,29 @@ jobs:
       - uses: reviewdog/action-eslint@2fee6dd72a5419ff4113f694e2068d2a03bb35dd # v1.33.2
         with:
           reporter: github-check
+          eslint_flags: "src/"
+```
+
+### Matrix example with unique tool name
+
+```yml
+name: reviewdog
+on: [pull_request]
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-check
+          tool_name: eslint-node-${{ matrix.node }}
           eslint_flags: "src/"
 ```
