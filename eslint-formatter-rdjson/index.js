@@ -170,7 +170,13 @@ module.exports = function (results, data) {
       }
 
       if (msg.fix) {
-        diagnostic.suggestions = [buildMinimumSuggestion(msg.fix, source)];
+        diagnostic.suggestions ??= [];
+        diagnostic.suggestions.push(buildMinimumSuggestion(msg.fix, source));
+      }
+
+      if (msg.suggestions) {
+        diagnostic.suggestions ??= [];
+        diagnostic.suggestions.push(...msg.suggestions.map(s => buildMinimumSuggestion(s.fix, source)));
       }
 
       rdjson.diagnostics.push(diagnostic);
