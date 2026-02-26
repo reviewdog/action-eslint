@@ -3,6 +3,20 @@
 
 // https://github.com/eslint/eslint/blob/091e52ae1ca408f3e668f394c14d214c9ce806e6/lib/shared/types.js#L11
 // https://github.com/eslint/eslint/blob/82669fa66670a00988db5b1d10fe8f3bf30be84e/lib/shared/config-validator.js#L40
+const path = require('path');
+
+// Convert an absolute file path to a relative path from the current working directory.
+// This is necessary for reviewdog's github-pr-review reporter to match
+// file paths with the PR diff.
+// Ref: https://github.com/reviewdog/action-rubocop rdjson_formatter.rb convert_path()
+function convertFilePath(filePath) {
+  const cwd = process.cwd();
+  if (filePath.startsWith(cwd)) {
+    return path.relative(cwd, filePath);
+  }
+  return filePath;
+}
+
 function convertSeverity(s) {
   if (s === 0) { // off
     return 'INFO';
@@ -144,7 +158,7 @@ module.exports = function (results, data) {
   };
 
   results.forEach(result => {
-    const filePath = result.filePath;
+    const filePath = convertFilePath(result.filePath);
     const source = result.source;
     const sourceLines = source ? source.split('\n') : [];
     result.messages.forEach(msg => {
