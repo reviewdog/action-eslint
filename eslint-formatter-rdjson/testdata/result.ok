@@ -551,7 +551,22 @@
         "value": "no-empty",
         "url": "https://eslint.org/docs/latest/rules/no-empty"
       },
-      "original_output": "{\"ruleId\":\"no-empty\",\"severity\":2,\"message\":\"Empty block statement.\",\"line\":11,\"column\":14,\"nodeType\":\"BlockStatement\",\"messageId\":\"unexpected\",\"endLine\":12,\"endColumn\":6,\"suggestions\":[{\"messageId\":\"suggestComment\",\"data\":{\"type\":\"block\"},\"fix\":{\"range\":[194,199],\"text\":\" /* empty */ \"},\"desc\":\"Add comment inside empty block statement.\"}]}"
+      "original_output": "{\"ruleId\":\"no-empty\",\"severity\":2,\"message\":\"Empty block statement.\",\"line\":11,\"column\":14,\"nodeType\":\"BlockStatement\",\"messageId\":\"unexpected\",\"endLine\":12,\"endColumn\":6,\"suggestions\":[{\"messageId\":\"suggestComment\",\"data\":{\"type\":\"block\"},\"fix\":{\"range\":[194,199],\"text\":\" /* empty */ \"},\"desc\":\"Add comment inside empty block statement.\"}]}",
+      "suggestions": [
+        {
+          "range": {
+            "start": {
+              "line": 11,
+              "column": 15
+            },
+            "end": {
+              "line": 12,
+              "column": 4
+            }
+          },
+          "text": " /* empty */"
+        }
+      ]
     },
     {
       "message": "Unnecessary semicolon.",
