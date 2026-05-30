@@ -3,15 +3,9 @@
   "version": "1.0.0",
   "description": "A test subprojet for testing reviewdog/action-eslint",
   "main": "index.js",
-  "dependencies": {
-  },
   "devDependencies": {
-    "eslint": "^8.0.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-standard": "^5.0.0"
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
