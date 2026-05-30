@@ -20,7 +20,7 @@
         "value": null,
         "url": ""
       },
-      "original_output": "{\"ruleId\":null,\"fatal\":true,\"severity\":2,\"message\":\"Parsing error: Unexpected character '🐶'\",\"line\":1,\"column\":1,\"nodeType\":null}"
+      "original_output": "{\"ruleId\":null,\"fatal\":true,\"severity\":2,\"message\":\"Parsing error: Unexpected character '🐶'\",\"line\":1,\"column\":1}"
     },
     {
       "message": "'test' is defined but never used.",
@@ -42,42 +42,20 @@
         "value": "no-unused-vars",
         "url": "https://eslint.org/docs/latest/rules/no-unused-vars"
       },
-      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'test' is defined but never used.\",\"line\":2,\"column\":10,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":2,\"endColumn\":14}"
-    },
-    {
-      "message": "Missing space before function parentheses.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 2,
-            "column": 14
-          },
-          "end": {
-            "line": 2,
-            "column": 15
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "space-before-function-paren",
-        "url": "https://eslint.org/docs/latest/rules/space-before-function-paren"
-      },
-      "original_output": "{\"ruleId\":\"space-before-function-paren\",\"severity\":2,\"message\":\"Missing space before function parentheses.\",\"line\":2,\"column\":14,\"nodeType\":\"FunctionDeclaration\",\"messageId\":\"missingSpace\",\"endLine\":2,\"endColumn\":15,\"fix\":{\"range\":[22,22],\"text\":\" \"}}",
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'test' is defined but never used.\",\"line\":2,\"column\":10,\"messageId\":\"unusedVar\",\"endLine\":2,\"endColumn\":14,\"suggestions\":[{\"messageId\":\"removeVar\",\"data\":{\"varName\":\"test\"},\"fix\":{\"range\":[9,111],\"text\":\"\"},\"desc\":\"Remove unused variable 'test'.\"}]}",
       "suggestions": [
         {
           "range": {
             "start": {
               "line": 2,
-              "column": 14
+              "column": 1
             },
             "end": {
-              "line": 2,
-              "column": 14
+              "line": 7,
+              "column": 2
             }
           },
-          "text": " "
+          "text": ""
         }
       ]
     },
@@ -91,8 +69,8 @@
             "column": 3
           },
           "end": {
-            "line": 6,
-            "column": 4
+            "line": 3,
+            "column": 31
           }
         }
       },
@@ -101,66 +79,7 @@
         "value": "for-direction",
         "url": "https://eslint.org/docs/latest/rules/for-direction"
       },
-      "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":3,\"column\":3,\"nodeType\":\"ForStatement\",\"messageId\":\"incorrectDirection\",\"endLine\":6,\"endColumn\":4}"
-    },
-    {
-      "message": "Unexpected var, use let or const instead.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 3,
-            "column": 8
-          },
-          "end": {
-            "line": 3,
-            "column": 17
-          }
-        }
-      },
-      "severity": "WARNING",
-      "code": {
-        "value": "no-var",
-        "url": "https://eslint.org/docs/latest/rules/no-var"
-      },
-      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":3,\"column\":8,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":3,\"endColumn\":17,\"fix\":{\"range\":[34,37],\"text\":\"let\"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 3,
-              "column": 8
-            },
-            "end": {
-              "line": 3,
-              "column": 11
-            }
-          },
-          "text": "let"
-        }
-      ]
-    },
-    {
-      "message": "Unexpected var, use let or const instead.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 4,
-            "column": 5
-          },
-          "end": {
-            "line": 4,
-            "column": 11
-          }
-        }
-      },
-      "severity": "WARNING",
-      "code": {
-        "value": "no-var",
-        "url": "https://eslint.org/docs/latest/rules/no-var"
-      },
-      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":4,\"column\":5,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":4,\"endColumn\":11}"
+      "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":3,\"column\":3,\"messageId\":\"incorrectDirection\",\"endLine\":3,\"endColumn\":31}"
     },
     {
       "message": "'a' is defined but never used.",
@@ -182,66 +101,22 @@
         "value": "no-unused-vars",
         "url": "https://eslint.org/docs/latest/rules/no-unused-vars"
       },
-      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'a' is defined but never used.\",\"line\":4,\"column\":9,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":4,\"endColumn\":10}"
-    },
-    {
-      "message": "Missing whitespace after semicolon.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 4,
-            "column": 10
-          },
-          "end": {
-            "line": 4,
-            "column": 11
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "semi-spacing",
-        "url": "https://eslint.org/docs/latest/rules/semi-spacing"
-      },
-      "original_output": "{\"ruleId\":\"semi-spacing\",\"severity\":2,\"message\":\"Missing whitespace after semicolon.\",\"line\":4,\"column\":10,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"missingWhitespaceAfter\",\"endLine\":4,\"endColumn\":11,\"fix\":{\"range\":[70,70],\"text\":\" \"}}",
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'a' is defined but never used.\",\"line\":4,\"column\":9,\"messageId\":\"unusedVar\",\"endLine\":4,\"endColumn\":10,\"suggestions\":[{\"messageId\":\"removeVar\",\"data\":{\"varName\":\"a\"},\"fix\":{\"range\":[64,70],\"text\":\"\"},\"desc\":\"Remove unused variable 'a'.\"}]}",
       "suggestions": [
         {
           "range": {
             "start": {
               "line": 4,
-              "column": 11
+              "column": 5
             },
             "end": {
               "line": 4,
               "column": 11
             }
           },
-          "text": " "
+          "text": ""
         }
       ]
-    },
-    {
-      "message": "Unexpected var, use let or const instead.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 4,
-            "column": 11
-          },
-          "end": {
-            "line": 4,
-            "column": 17
-          }
-        }
-      },
-      "severity": "WARNING",
-      "code": {
-        "value": "no-var",
-        "url": "https://eslint.org/docs/latest/rules/no-var"
-      },
-      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":4,\"column\":11,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":4,\"endColumn\":17}"
     },
     {
       "message": "'b' is defined but never used.",
@@ -263,116 +138,20 @@
         "value": "no-unused-vars",
         "url": "https://eslint.org/docs/latest/rules/no-unused-vars"
       },
-      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'b' is defined but never used.\",\"line\":4,\"column\":15,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":4,\"endColumn\":16}"
-    },
-    {
-      "message": "Extra semicolon.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 4,
-            "column": 16
-          },
-          "end": {
-            "line": 4,
-            "column": 17
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "semi",
-        "url": "https://eslint.org/docs/latest/rules/semi"
-      },
-      "original_output": "{\"ruleId\":\"semi\",\"severity\":2,\"message\":\"Extra semicolon.\",\"line\":4,\"column\":16,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"extraSemi\",\"endLine\":4,\"endColumn\":17,\"fix\":{\"range\":[74,97],\"text\":\"b//comment\\n    console\"}}",
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'b' is defined but never used.\",\"line\":4,\"column\":15,\"messageId\":\"unusedVar\",\"endLine\":4,\"endColumn\":16,\"suggestions\":[{\"messageId\":\"removeVar\",\"data\":{\"varName\":\"b\"},\"fix\":{\"range\":[70,76],\"text\":\"\"},\"desc\":\"Remove unused variable 'b'.\"}]}",
       "suggestions": [
         {
           "range": {
             "start": {
               "line": 4,
-              "column": 15
+              "column": 11
             },
             "end": {
               "line": 4,
               "column": 17
             }
           },
-          "text": "b"
-        }
-      ]
-    },
-    {
-      "message": "Expected space or tab after '//' in comment.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 4,
-            "column": 17
-          },
-          "end": {
-            "line": 4,
-            "column": 26
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "spaced-comment",
-        "url": "https://eslint.org/docs/latest/rules/spaced-comment"
-      },
-      "original_output": "{\"ruleId\":\"spaced-comment\",\"severity\":2,\"message\":\"Expected space or tab after '//' in comment.\",\"line\":4,\"column\":17,\"nodeType\":\"Line\",\"messageId\":\"expectedSpaceAfter\",\"endLine\":4,\"endColumn\":26,\"fix\":{\"range\":[78,78],\"text\":\" \"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 4,
-              "column": 19
-            },
-            "end": {
-              "line": 4,
-              "column": 19
-            }
-          },
-          "text": " "
-        }
-      ]
-    },
-    {
-      "message": "Extra semicolon.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 5,
-            "column": 19
-          },
-          "end": {
-            "line": 5,
-            "column": 20
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "semi",
-        "url": "https://eslint.org/docs/latest/rules/semi"
-      },
-      "original_output": "{\"ruleId\":\"semi\",\"severity\":2,\"message\":\"Extra semicolon.\",\"line\":5,\"column\":19,\"nodeType\":\"ExpressionStatement\",\"messageId\":\"extraSemi\",\"endLine\":5,\"endColumn\":20,\"fix\":{\"range\":[103,109],\"text\":\")\\n  }\"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 5,
-              "column": 18
-            },
-            "end": {
-              "line": 5,
-              "column": 20
-            }
-          },
-          "text": ")"
+          "text": ""
         }
       ]
     },
@@ -396,42 +175,20 @@
         "value": "no-unused-vars",
         "url": "https://eslint.org/docs/latest/rules/no-unused-vars"
       },
-      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'test2' is defined but never used.\",\"line\":9,\"column\":25,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":9,\"endColumn\":30}"
-    },
-    {
-      "message": "Missing space before function parentheses.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 9,
-            "column": 42
-          },
-          "end": {
-            "line": 9,
-            "column": 43
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "space-before-function-paren",
-        "url": "https://eslint.org/docs/latest/rules/space-before-function-paren"
-      },
-      "original_output": "{\"ruleId\":\"space-before-function-paren\",\"severity\":2,\"message\":\"Missing space before function parentheses.\",\"line\":9,\"column\":30,\"nodeType\":\"FunctionDeclaration\",\"messageId\":\"missingSpace\",\"endLine\":9,\"endColumn\":31,\"fix\":{\"range\":[142,142],\"text\":\" \"}}",
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'test2' is defined but never used.\",\"line\":9,\"column\":25,\"messageId\":\"unusedVar\",\"endLine\":9,\"endColumn\":30,\"suggestions\":[{\"messageId\":\"removeVar\",\"data\":{\"varName\":\"test2\"},\"fix\":{\"range\":[113,206],\"text\":\"\"},\"desc\":\"Remove unused variable 'test2'.\"}]}",
       "suggestions": [
         {
           "range": {
             "start": {
               "line": 9,
-              "column": 42
+              "column": 1
             },
             "end": {
-              "line": 9,
-              "column": 42
+              "line": 14,
+              "column": 2
             }
           },
-          "text": " "
+          "text": ""
         }
       ]
     },
@@ -445,8 +202,8 @@
             "column": 3
           },
           "end": {
-            "line": 13,
-            "column": 4
+            "line": 10,
+            "column": 31
           }
         }
       },
@@ -455,44 +212,7 @@
         "value": "for-direction",
         "url": "https://eslint.org/docs/latest/rules/for-direction"
       },
-      "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":10,\"column\":3,\"nodeType\":\"ForStatement\",\"messageId\":\"incorrectDirection\",\"endLine\":13,\"endColumn\":4}"
-    },
-    {
-      "message": "Unexpected var, use let or const instead.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 10,
-            "column": 8
-          },
-          "end": {
-            "line": 10,
-            "column": 17
-          }
-        }
-      },
-      "severity": "WARNING",
-      "code": {
-        "value": "no-var",
-        "url": "https://eslint.org/docs/latest/rules/no-var"
-      },
-      "original_output": "{\"ruleId\":\"no-var\",\"severity\":1,\"message\":\"Unexpected var, use let or const instead.\",\"line\":10,\"column\":8,\"nodeType\":\"VariableDeclaration\",\"messageId\":\"unexpectedVar\",\"endLine\":10,\"endColumn\":17,\"fix\":{\"range\":[154,157],\"text\":\"let\"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 10,
-              "column": 8
-            },
-            "end": {
-              "line": 10,
-              "column": 11
-            }
-          },
-          "text": "let"
-        }
-      ]
+      "original_output": "{\"ruleId\":\"for-direction\",\"severity\":2,\"message\":\"The update clause in this loop moves the variable in the wrong direction.\",\"line\":10,\"column\":3,\"messageId\":\"incorrectDirection\",\"endLine\":10,\"endColumn\":31}"
     },
     {
       "message": "Redundant double negation.",
@@ -514,7 +234,7 @@
         "value": "no-extra-boolean-cast",
         "url": "https://eslint.org/docs/latest/rules/no-extra-boolean-cast"
       },
-      "original_output": "{\"ruleId\":\"no-extra-boolean-cast\",\"severity\":2,\"message\":\"Redundant double negation.\",\"line\":11,\"column\":9,\"nodeType\":\"UnaryExpression\",\"messageId\":\"unexpectedNegation\",\"endLine\":11,\"endColumn\":12,\"fix\":{\"range\":[188,191],\"text\":\"i\"}}",
+      "original_output": "{\"ruleId\":\"no-extra-boolean-cast\",\"severity\":2,\"message\":\"Redundant double negation.\",\"line\":11,\"column\":9,\"messageId\":\"unexpectedNegation\",\"endLine\":11,\"endColumn\":12,\"fix\":{\"range\":[188,191],\"text\":\"i\"}}",
       "suggestions": [
         {
           "range": {
@@ -551,7 +271,7 @@
         "value": "no-empty",
         "url": "https://eslint.org/docs/latest/rules/no-empty"
       },
-      "original_output": "{\"ruleId\":\"no-empty\",\"severity\":2,\"message\":\"Empty block statement.\",\"line\":11,\"column\":14,\"nodeType\":\"BlockStatement\",\"messageId\":\"unexpected\",\"endLine\":12,\"endColumn\":6,\"suggestions\":[{\"messageId\":\"suggestComment\",\"data\":{\"type\":\"block\"},\"fix\":{\"range\":[194,199],\"text\":\" /* empty */ \"},\"desc\":\"Add comment inside empty block statement.\"}]}",
+      "original_output": "{\"ruleId\":\"no-empty\",\"severity\":2,\"message\":\"Empty block statement.\",\"line\":11,\"column\":14,\"messageId\":\"unexpected\",\"endLine\":12,\"endColumn\":6,\"suggestions\":[{\"messageId\":\"suggestComment\",\"data\":{\"type\":\"block\"},\"fix\":{\"range\":[194,199],\"text\":\" /* empty */ \"},\"desc\":\"Add comment inside empty block statement.\"}]}",
       "suggestions": [
         {
           "range": {
@@ -565,43 +285,6 @@
             }
           },
           "text": " /* empty */"
-        }
-      ]
-    },
-    {
-      "message": "Unnecessary semicolon.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 14,
-            "column": 2
-          },
-          "end": {
-            "line": 14,
-            "column": 3
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "no-extra-semi",
-        "url": "https://eslint.org/docs/latest/rules/no-extra-semi"
-      },
-      "original_output": "{\"ruleId\":\"no-extra-semi\",\"severity\":2,\"message\":\"Unnecessary semicolon.\",\"line\":14,\"column\":2,\"nodeType\":\"EmptyStatement\",\"messageId\":\"unexpected\",\"endLine\":14,\"endColumn\":3,\"fix\":{\"range\":[205,217],\"text\":\"}\\n\\nfunction\"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 14,
-              "column": 1
-            },
-            "end": {
-              "line": 14,
-              "column": 3
-            }
-          },
-          "text": "}"
         }
       ]
     },
@@ -625,116 +308,20 @@
         "value": "no-unused-vars",
         "url": "https://eslint.org/docs/latest/rules/no-unused-vars"
       },
-      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'f' is defined but never used.\",\"line\":16,\"column\":10,\"nodeType\":\"Identifier\",\"messageId\":\"unusedVar\",\"endLine\":16,\"endColumn\":11}"
-    },
-    {
-      "message": "Missing space before function parentheses.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 16,
-            "column": 11
-          },
-          "end": {
-            "line": 16,
-            "column": 12
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "space-before-function-paren",
-        "url": "https://eslint.org/docs/latest/rules/space-before-function-paren"
-      },
-      "original_output": "{\"ruleId\":\"space-before-function-paren\",\"severity\":2,\"message\":\"Missing space before function parentheses.\",\"line\":16,\"column\":11,\"nodeType\":\"FunctionDeclaration\",\"messageId\":\"missingSpace\",\"endLine\":16,\"endColumn\":12,\"fix\":{\"range\":[219,219],\"text\":\" \"}}",
+      "original_output": "{\"ruleId\":\"no-unused-vars\",\"severity\":2,\"message\":\"'f' is defined but never used.\",\"line\":16,\"column\":10,\"messageId\":\"unusedVar\",\"endLine\":16,\"endColumn\":11,\"suggestions\":[{\"messageId\":\"removeVar\",\"data\":{\"varName\":\"f\"},\"fix\":{\"range\":[209,246],\"text\":\"\"},\"desc\":\"Remove unused variable 'f'.\"}]}",
       "suggestions": [
         {
           "range": {
             "start": {
               "line": 16,
-              "column": 11
-            },
-            "end": {
-              "line": 16,
-              "column": 11
-            }
-          },
-          "text": " "
-        }
-      ]
-    },
-    {
-      "message": "Opening curly brace does not appear on the same line as controlling statement.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 17,
-            "column": 1
-          },
-          "end": {
-            "line": 17,
-            "column": 2
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "brace-style",
-        "url": "https://eslint.org/docs/latest/rules/brace-style"
-      },
-      "original_output": "{\"ruleId\":\"brace-style\",\"severity\":2,\"message\":\"Opening curly brace does not appear on the same line as controlling statement.\",\"line\":17,\"column\":1,\"nodeType\":\"Punctuator\",\"messageId\":\"nextLineOpen\",\"endLine\":17,\"endColumn\":2,\"fix\":{\"range\":[221,222],\"text\":\" \"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 16,
-              "column": 13
-            },
-            "end": {
-              "line": 17,
               "column": 1
-            }
-          },
-          "text": " "
-        }
-      ]
-    },
-    {
-      "message": "Extra semicolon.",
-      "location": {
-        "path": "testdata/test.js",
-        "range": {
-          "start": {
-            "line": 18,
-            "column": 22
-          },
-          "end": {
-            "line": 18,
-            "column": 23
-          }
-        }
-      },
-      "severity": "ERROR",
-      "code": {
-        "value": "semi",
-        "url": "https://eslint.org/docs/latest/rules/semi"
-      },
-      "original_output": "{\"ruleId\":\"semi\",\"severity\":2,\"message\":\"Extra semicolon.\",\"line\":18,\"column\":20,\"nodeType\":\"ExpressionStatement\",\"messageId\":\"extraSemi\",\"endLine\":18,\"endColumn\":21,\"fix\":{\"range\":[242,246],\"text\":\")\\n}\"}}",
-      "suggestions": [
-        {
-          "range": {
-            "start": {
-              "line": 18,
-              "column": 21
             },
             "end": {
-              "line": 18,
-              "column": 23
+              "line": 19,
+              "column": 2
             }
           },
-          "text": ")"
+          "text": ""
         }
       ]
     }
