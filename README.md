@@ -71,6 +71,13 @@ Optional. The directory from which to look for and run eslint. Default '.'
 
 Optional. The NODE_OPTIONS environment variable to use with eslint. Default is ''.
 
+### `only_changed`
+
+Optional. Run eslint only on changed (and added) files, for speedup [`true`, `false`]. Default: `false`.
+
+Will fetch the tip of the base branch with depth 1 from remote `origin` if it is not available.
+If you use different remote name or customize the checkout otherwise, make the tip of the base branch available before this action.
+
 ## Example usage
 
 You also need to install [eslint](https://github.com/eslint/eslint).

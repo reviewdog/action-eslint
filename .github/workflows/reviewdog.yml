@@ -55,3 +55,21 @@ jobs:
           reporter: github-check
           level: warning
           filter_mode: file
+      - name: eslint-only-changed
+        uses: ./
+        with:
+          tool_name: eslint-only-changed
+          reporter: github-check
+          level: warning
+          only_changed: true
+          eslint_flags: "testdata/ --ignore-pattern /test-subproject/"
+      - name: eslint-subproject-only-changed
+        uses: ./
+        with:
+          tool_name: eslint-subproject-only-changed
+          workdir: ./test-subproject
+          reporter: github-check
+          level: warning
+          filter_mode: file
+          only_changed: true
+          eslint_flags: "sub-testdata/"
