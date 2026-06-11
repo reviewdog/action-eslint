@@ -11,7 +11,7 @@
     "eslint-formatter-rdjson": "file:eslint-formatter-rdjson",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-promise": "^7.0.0",
     "eslint-plugin-standard": "^5.0.0"
   },
   "scripts": {
