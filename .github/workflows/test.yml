@@ -16,3 +16,5 @@ jobs:
       - run: npm ci
       - name: Test eslint-formatter-rdjson
         run: ./eslint-formatter-rdjson/test.sh
+      - name: Test eslint_flags parsing
+        run: ./script_test.sh
