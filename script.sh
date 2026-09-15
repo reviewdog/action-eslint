@@ -50,8 +50,13 @@ if [ "${INPUT_ONLY_CHANGED}" = "true" ]; then
   echo '::endgroup::'
 fi
 
-# shellcheck disable=SC2206
-ESLINT_FLAGS_ARRAY=( ${INPUT_ESLINT_FLAGS:-'.'} )
+# eslint_flags may contain quoted arguments (e.g. globs such as
+# "src/**/*.{ts,tsx}"). Use eval so the shell performs word splitting and
+# quote removal on the value, matching the v1.34.x behavior where the flags
+# were interpolated into a shell command string. INPUT_ESLINT_FLAGS is
+# provided by the (trusted) workflow author.
+# shellcheck disable=SC2294
+eval "ESLINT_FLAGS_ARRAY=( ${INPUT_ESLINT_FLAGS:-'.'} )"
 
 ESLINT_ARGS=(-f "${ESLINT_FORMATTER}")
 ESLINT_ARGS+=("${ESLINT_FLAGS_ARRAY[@]}")
