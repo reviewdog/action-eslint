@@ -75,6 +75,11 @@ Optional. The NODE_OPTIONS environment variable to use with eslint. Default is '
 
 Optional. Run eslint only on changed (and added) files, for speedup [`true`, `false`]. Default: `false`.
 
+With the default `eslint_flags: '.'`, the changed files replace the default directory.
+Additional options in `eslint_flags` are preserved; explicitly supplied file or directory
+patterns add to the changed-file selection. More than 100 changed files fall back to
+the configured `eslint_flags` scope.
+
 Will fetch the tip of the base branch with depth 1 from remote `origin` if it is not available.
 If you use different remote name or customize the checkout otherwise, make the tip of the base branch available before this action.
 
