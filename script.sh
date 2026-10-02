@@ -29,10 +29,11 @@ if [ "${INPUT_ONLY_CHANGED}" = "true" ]; then
       git fetch --depth 1 origin "${BASE_REF}"
     fi
 
+    git diff --relative --diff-filter=d --name-only -z "${BASE_REF}..${HEAD_REF}" > "${TEMP_PATH}/changed-files" || exit $?
     CHANGED_FILES=()
-    while IFS= read -r file; do
+    while IFS= read -r -d '' file; do
       CHANGED_FILES+=("${file}")
-    done < <(git diff --relative --diff-filter=d --name-only "${BASE_REF}..${HEAD_REF}")
+    done < "${TEMP_PATH}/changed-files"
 
     if (( ${#CHANGED_FILES[@]} == 0 )); then
       echo 'No changed files, skipping'
@@ -57,6 +58,11 @@ fi
 # provided by the (trusted) workflow author.
 # shellcheck disable=SC2294
 eval "ESLINT_FLAGS_ARRAY=( ${INPUT_ESLINT_FLAGS:-'.'} )"
+# The default directory would make ESLint scan all files in addition to the
+# changed files. Keep it only when there is no bounded changed-file selection.
+if [ -n "${CHANGED_FILES+x}" ] && [ "${#ESLINT_FLAGS_ARRAY[@]}" -eq 1 ] && [ "${ESLINT_FLAGS_ARRAY[0]}" = "." ]; then
+  ESLINT_FLAGS_ARRAY=()
+fi
 
 ESLINT_ARGS=(-f "${ESLINT_FORMATTER}")
 ESLINT_ARGS+=("${ESLINT_FLAGS_ARRAY[@]}")
