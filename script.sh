@@ -13,7 +13,7 @@ echo '::endgroup::'
 
 if ! npx --no-install -c 'eslint --version'; then
   echo '::group:: Running `npm install` to install eslint ...'
-  npm install
+  npm install || exit $?
   echo '::endgroup::'
 fi
 
@@ -82,6 +82,13 @@ npx --no-install eslint "${ESLINT_ARGS[@]}" \
       -level="${INPUT_LEVEL}" \
       ${INPUT_REVIEWDOG_FLAGS}
 
-reviewdog_rc=$?
+pipeline_status=("${PIPESTATUS[@]}")
+eslint_rc=${pipeline_status[0]}
+reviewdog_rc=${pipeline_status[1]}
 echo '::endgroup::'
+# ESLint uses 1 for lint findings, whose failure policy belongs to reviewdog.
+# Configuration/internal errors (2), or a failed invocation, must still fail.
+if [ "${eslint_rc}" -gt 1 ]; then
+  exit "${eslint_rc}"
+fi
 exit $reviewdog_rc
