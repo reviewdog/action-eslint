@@ -7,14 +7,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: "24"
       - run: npm install
       - name: Test eslint-formatter-rdjson
         run: ./eslint-formatter-rdjson/test.sh
-      - uses: JS-DevTools/npm-publish@0fd2f4369c5d6bcfcde6091a7c527d810b9b5c3f # v4.1.5
+      - uses: JS-DevTools/npm-publish@v4.1.5
         with:
           package: ./eslint-formatter-rdjson/package.json
           token: ${{ secrets.NPM_TOKEN }}
