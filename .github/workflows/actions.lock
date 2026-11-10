@@ -6,7 +6,7 @@ workflows:
     '.github/workflows/depup.yml':
         - 'actions/checkout@v7.0.1'
         - 'peter-evans/create-pull-request@v8.1.2'
-        - 'reviewdog/action-depup@v1.6.5'
+        - 'reviewdog/action-depup@v1.6.7'
     '.github/workflows/npm-publish.yml':
         - 'actions/checkout@v7.0.1'
         - 'actions/setup-node@v7.1.0'
@@ -58,8 +58,8 @@ dependencies:
         commit: 'sha1-15733dbdfeedb4f7fdb73d13c6f5ac83b710fab8'
         owner_id: 18365890
         repo_id: 197176365
-    'reviewdog/action-depup@v1.6.5':
-        ref: 'v1.6.5'
-        commit: 'sha1-99f7aecf3e4d06d5a3faf190dae5dc79ac530b5a'
+    'reviewdog/action-depup@v1.6.7':
+        ref: 'v1.6.7'
+        commit: 'sha1-a03fa2103b273193becba8cca43a992b9173f5dc'
         owner_id: 48765237
         repo_id: 234837904
